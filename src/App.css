@@ -1,42 +1,96 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Global colors */
+
+:root {
+  /* top navbar color */
+  --primary-color: #191d24;
+  /* side navbar color */
+  --secondary-color: #2c3341;
+  --hover-color: #191c24;
+  --background-color: #d9dbdb;
+  --text-color1: #ffffff;
+  --text-color2: #080808;
+  --background-color2: #242424;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: var(--text-color1);
+}
+
+/* Navbar styles */
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--primary-color);
+}
+
+.side-nav {
+  color: var(--text-color1);
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  overflow-x: hidden;
+  background-color: var(--secondary-color);
+}
+
+.side-nav div {
   text-align: center;
+  padding: 30px;
+  background-color: var(--secondary-color);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.side-nav div:hover {
+  background-color: var(--hover-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-elements-1-2 {
+  display: flex;
+
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.nav-elements-1-2 div {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 
-.card {
-  padding: 2em;
+.nav-elements-3-4 div {
+  margin-right: 10px;
+}
+.nav-elements-3-4 {
+  display: flex;
+  align-items: center;
+}
+.flex-row {
+  display: flex;
 }
 
-.read-the-docs {
-  color: #888;
+.profile-pic-small {
+  width: 24px;
+  height: 24px;
+  background-color: cadetblue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-color1);
+  margin: 3px 0;
+  transition: 0.4s;
 }
