@@ -17,6 +17,8 @@ body {
   padding: 0;
   margin: 0;
   color: var(--text-color1);
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
 /* Navbar styles */
@@ -30,7 +32,7 @@ body {
 
 .side-nav {
   color: var(--text-color1);
-  width: 200px;
+  width: 230px;
   height: 100vh;
   position: fixed;
   left: 0;
@@ -38,14 +40,31 @@ body {
   background-color: var(--secondary-color);
 }
 
-.side-nav div {
-  text-align: center;
-  padding: 30px;
+.side-nav li {
+  text-align: left;
+  padding: 26px 26px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.781);
   background-color: var(--secondary-color);
 }
 
-.side-nav div:hover {
+.side-nav li:hover {
   background-color: var(--hover-color);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+#team-tactics-logo {
+  padding: 0;
+  margin: 0;
 }
 
 .nav-elements-1-2 {
@@ -71,14 +90,62 @@ body {
   display: flex;
 }
 
+.nav-message-icon {
+  display: flex;
+  align-items: center;
+}
+
+.nav-search-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
 .profile-pic-small {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   background-color: cadetblue;
   border-radius: 50%;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+}
+
+.profile-pic-small p {
+  margin-left: 6px;
+}
+
+.profile-pic-large {
+  width: 110px;
+  height: 110px;
+  background-color: cadetblue;
+  border-radius: 50%;
+  display: flex;
+  /* text-align: center;
+  line-height: 100px; */
+}
+
+.profile-pic-large div {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-left: 29px;
+}
+
+.profile-pic-large p {
+  text-align: center;
+  font-size: 40px;
+  /* font-family: sans-serif; */
+}
+
+.profile-pic-large-container {
+  margin-top: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#side-nav-username {
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.417);
 }
 
 .menu {
