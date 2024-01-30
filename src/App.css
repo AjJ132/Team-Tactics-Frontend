@@ -6,7 +6,7 @@
   /* side navbar color */
   --secondary-color: #2c3341;
   --hover-color: #191c24;
-  --background-color: #d9dbdb;
+  --background-color: #f0f2f4;
   --text-color1: #ffffff;
   --text-color2: #080808;
   --background-color2: #242424;
@@ -109,6 +109,10 @@ h3 {
   align-items: center;
 }
 
+.bar {
+  display: none;
+}
+
 .profile-pic-small p {
   margin-left: 6px;
 }
@@ -145,19 +149,163 @@ h3 {
 
 #side-nav-username {
   text-align: center;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.417); */
+}
+
+.divider {
   border-bottom: 1px solid rgba(255, 255, 255, 0.417);
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
+  display: none;
 }
 
+.nav-elements-1-2 div {
+  display: none;
+}
 .bar {
   width: 24px;
   height: 2px;
   background-color: var(--text-color1);
   margin: 3px 0;
   transition: 0.4s;
+}
+
+/* Dashboard styles  */
+
+/* .Dashboard {
+} */
+
+.Dashboard-heading {
+  color: rgba(0, 0, 0, 0.775);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.Dashboard-heading h2 {
+  margin-left: 260px;
+  padding: 12px 10px;
+}
+
+.Dashboard-body {
+  background-color: var(--background-color);
+  /* height: 87.9vh; */
+  /* height: calc(100vh - 12.1vh); */
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+  #team-tactics-logo {
+    display: none;
+  }
+
+  .nav-username {
+    display: none;
+  }
+
+  .nav-message-icon {
+    display: none;
+  }
+
+  .nav-search-icon {
+    display: none;
+  }
+
+  .side-nav {
+    color: var(--text-color1);
+    width: 100vh;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    overflow-x: hidden;
+    background-color: var(--secondary-color);
+  }
+
+  .profile-pic-large-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-pic-large {
+    width: 50px;
+    height: 50px;
+    background-color: cadetblue;
+    border-radius: 50%;
+    display: flex;
+    /* text-align: center;
+  line-height: 100px; */
+  }
+
+  .profile-container {
+    display: flex;
+  }
+
+  .profile-pic-large div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 12px;
+  }
+
+  .profile-pic-large p {
+    text-align: center;
+    font-size: 20px;
+    /* font-family: sans-serif; */
+  }
+
+  #side-nav-username {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 2px;
+  }
+
+  #side-nav-username h3 {
+    font-size: 16px;
+  }
+
+  .side-nav li {
+    text-align: left;
+    padding: 22px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.781);
+    background-color: var(--secondary-color);
+  }
+
+  .menu {
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .bar {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-color1);
+    margin: 3px 0;
+    transition: 0.4s;
+  }
+
+  .nav-elements-1-2 {
+    display: flex;
+
+    margin-right: 10px;
+  }
+
+  .nav-elements-1-2 div {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .Dashboard-heading h2 {
+    margin-left: 0;
+  }
 }

@@ -3,7 +3,7 @@ import "./App.css";
 
 function Navbar() {
   // useState hook to toggle the side navbar
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(true);
 
   return (
     <>
@@ -15,6 +15,8 @@ function Navbar() {
             <div className="bar"></div>
             <div className="bar"></div>
           </div>
+
+          {/* Need to come up with a logo */}
           <h3 id="team-tactics-logo">TEAM TACTICS</h3>
         </div>
 
@@ -22,7 +24,7 @@ function Navbar() {
           <div className="profile-pic-small">
             <p>UP</p>
           </div>
-          <div>User Profile</div>
+          <div className="nav-username">User Profile</div>
 
           {/* Bootstrap icons */}
           <div className="nav-message-icon">
@@ -59,28 +61,32 @@ function Navbar() {
        ************* */}
 
       {/* This is the side navbar. It uses state "toggleMenu" to open and close the side navbar. */}
-      {/* {toggleMenu && ( */}
-      <div className="side-nav">
-        <div className="profile-pic-large-container">
-          <div className="profile-pic-large">
-            <div>
-              <p>UP</p>
+      {toggleMenu && (
+        <div className="side-nav">
+          <div className="profile-container">
+            <div className="profile-pic-large-container">
+              <div className="profile-pic-large">
+                <div>
+                  <p>UP</p>
+                </div>
+              </div>
+            </div>
+            <div id="side-nav-username">
+              <h3>User Profile</h3>
             </div>
           </div>
+          <div className="divider"></div>
+
+          <ul>
+            <li>Dashboard</li>
+            <li>Profile</li>
+            <li>Messages</li>
+            <li>Schedule</li>
+            <li>Manage Teams</li>
+            <li>Logout</li>
+          </ul>
         </div>
-        <div id="side-nav-username">
-          <h3>User Profile</h3>
-        </div>
-        <ul>
-          <li>Dashboard</li>
-          <li>Profile</li>
-          <li>Messages</li>
-          <li>Schedule</li>
-          <li>Manage Teams</li>
-          <li>Logout</li>
-        </ul>
-      </div>
-      {/* )} */}
+      )}
     </>
   );
 }
