@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { signin_service } from "../../services/loginservice";
 
-
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +15,7 @@ function Signin() {
         // redirect to dashboard
       } else {
         console.log("failed signin");
-        
+
         //DEV
         alert("Failed to sign in");
       }
