@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { signin_service } from "./services/loginservice";
 
-import "./App.css";
+import "./styles/App.css";
+import "./styles/Signin.css";
 
 function Signin() {
   const [email, setEmail] = useState("");

@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-import "./App.css";
+import "./styles/Dashboard.css";
+import "./styles/App.css";
 
 function Dashboard() {
   const [count, setCount] = useState(0);
