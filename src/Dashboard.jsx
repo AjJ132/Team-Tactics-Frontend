@@ -3,7 +3,8 @@ import { useState } from "react";
 import "./App.css";
 
 function Dashboard() {
-  const [count, setCount] = useState(0);
+  const today = new Date();
+  const date = `${today.toLocaleString('default', { weekday: 'long' })}, ${today.toLocaleString('default', { month: 'long' })} ${today.getDate()}, ${today.getFullYear()}`;
 
   return (
     <>
@@ -11,7 +12,7 @@ function Dashboard() {
         <div className="Dashboard-heading">
           <h2>Welcome, User</h2>
 
-          <p>Tuesday, January 30, 2024</p>
+          <p>{date}</p>
         </div>
         <div className="Dashboard-body"></div>
       </div>

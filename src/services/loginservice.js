@@ -23,7 +23,7 @@ export const signin_service = async (email, password) => {
 
 export const signup_service = async (email, password, firstname, lastname) => {
   try {
-    const response = await http_context(`${API_URL}/register`, {
+    const response = await http_context(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

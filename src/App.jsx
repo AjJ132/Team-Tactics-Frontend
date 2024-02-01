@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar.jsx";
-import Signin from "./Signin.jsx";
-import Signup from "./Signup.jsx";
+import Signin from "./pages/signin-signup/Signin.jsx";
+import Signup from "./pages/signin-signup/Signup.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./Dashboard.jsx";
 
