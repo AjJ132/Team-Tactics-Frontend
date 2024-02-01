@@ -1,0 +1,20 @@
+/* Dashboard styles  */
+
+.Dashboard-heading {
+  color: rgba(0, 0, 0, 0.775);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.Dashboard-heading h2 {
+  margin-left: 260px;
+  padding: 12px 10px;
+}
+
+.Dashboard-body {
+  background-color: var(--background-color);
+  /* height: 87.9vh; */
+  /* height: calc(100vh - 12.1vh); */
+}

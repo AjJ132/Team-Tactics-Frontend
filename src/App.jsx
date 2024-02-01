@@ -4,8 +4,10 @@ import Signin from "./pages/signin-signup/Signin.jsx";
 import Signup from "./pages/signin-signup/Signup.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./Dashboard.jsx";
-
-import "./App.css";
+import "./styles/App.css";
+import "./styles/Navbar.css";
+import "./styles/Dashboard.css";
+import "./styles/Signin.css";
 
 function App() {
   //  Signin and Signup will have own separate page without the Navbar component present.
