@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function Navbar() {
@@ -21,6 +22,19 @@ function Navbar() {
         </div>
 
         <div className="nav-elements-3-4">
+          {/* Signin and Signup links will not stay in this place, 
+          only here temporarily to be able to navigate to see 
+          the signin/signup pages.  */}
+          <div>
+            <Link to="/signup" className="signin-link">
+              Signup
+            </Link>
+          </div>
+          <div>
+            <Link to="/signin" className="signin-link">
+              Signin
+            </Link>
+          </div>
           <div className="profile-pic-small">
             <p>UP</p>
           </div>
@@ -78,7 +92,11 @@ function Navbar() {
           <div className="divider"></div>
 
           <ul>
-            <li>Dashboard</li>
+            <li>
+              <Link to="/" className="nav-dashboard">
+                Dashboard
+              </Link>
+            </li>
             <li>Profile</li>
             <li>Messages</li>
             <li>Schedule</li>

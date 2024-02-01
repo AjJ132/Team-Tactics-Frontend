@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./App.css";
 
 function Dashboard() {
@@ -9,6 +10,7 @@ function Dashboard() {
       <div className="Dashboard">
         <div className="Dashboard-heading">
           <h2>Welcome, User</h2>
+
           <p>Tuesday, January 30, 2024</p>
         </div>
         <div className="Dashboard-body"></div>
