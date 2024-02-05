@@ -16,7 +16,14 @@ function Dashboard() {
 
           <p>{date}</p>
         </div>
-        <div className="Dashboard-body"></div>
+        <div className="Dashboard-body">
+          {/* <div className="Dashboard-my-events-container">
+            <h2>Hello</h2>
+          </div>
+          <div className="Dashboard-my-events-container">
+            <h2>Hello</h2>
+          </div> */}
+        </div>
       </div>
     </>
   );

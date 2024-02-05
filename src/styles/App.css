@@ -3,6 +3,7 @@
 :root {
   /* top navbar color */
   --primary-color: #191d24;
+  --primary-text-color: rgba(0, 0, 0, 0.775);
   /* side navbar color */
   --secondary-color: #2c3341;
   --hover-color: #191c24;
