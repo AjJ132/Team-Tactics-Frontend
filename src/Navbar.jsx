@@ -39,7 +39,11 @@ function Navbar() {
           <div className="profile-pic-small">
             <p>UP</p>
           </div>
-          <div className="nav-username">User Profile</div>
+          <div>
+            <Link to="/userprofile" className="nav-username">
+                  User Profile 
+            </Link>
+          </div>
 
           {/* Bootstrap icons */}
           <div className="nav-message-icon">
@@ -98,7 +102,12 @@ function Navbar() {
                 Dashboard
               </Link>
             </li>
-            <li>Profile</li>
+            <li> <div>
+            <Link to="/userprofile" className="nav-username">
+                  User Profile 
+            </Link>
+          </div>
+          </li>
             <li>Messages</li>
             <li>Schedule</li>
             <li>Manage Teams</li>

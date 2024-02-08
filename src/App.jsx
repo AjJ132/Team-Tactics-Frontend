@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./Navbar.jsx";
 import Signin from "./pages/signin-signup/Signin.jsx";
 import Signup from "./pages/signin-signup/Signup.jsx";
+import UserProfile from "./pages/signin-signup/UserProfile/UserProfile.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./Dashboard.jsx";
 import "./styles/App.css";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/userprofile" element={<UserProfile/>}/>
       </Routes>
     </Router>
   );

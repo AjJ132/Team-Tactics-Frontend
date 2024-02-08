@@ -1,0 +1,88 @@
+
+
+.user-profile-container {
+    color: black;
+    background-color: var(--background-color);
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+  }
+  
+  .user-info {
+    width: 50%; 
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    position: relative; left: 275px;
+  }
+  
+  .user-info-label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  
+  .user-info-value {
+    font-size: 16px;
+    margin-bottom: 50px; 
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    margin-top: 20px;
+  }
+  
+  .input-field {
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    padding: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .secondary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+  }
+  
+  .edit-profile-button {
+    order: 1; 
+    position: relative; top: 50px; right: -700px;
+  }
+  
+  .save-profile-button {
+    order: 2; 
+    position: relative; top: 50px; right: -700px;
+  }
+  
+  .change-password-button,
+  .logout-button {
+    order: 3; 
+    position: relative; top: 530px; right: 125px;
+  }
+  
+  .profile-heading {
+    margin-bottom: 50px;
+    font-size: 30px;
+    position: relative; left: 25px;
+  }
+  
+  .profile-picture {
+    margin-right: 20px;
+    border-radius: 50%;
+    position: relative; left: 0px;
+  }
+  
