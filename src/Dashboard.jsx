@@ -1,10 +1,12 @@
 import { useState } from "react";
-import "./styles/Dashboard.css";
-import "./styles/App.css";
 
 function Dashboard() {
   const today = new Date();
-  const date = `${today.toLocaleString('default', { weekday: 'long' })}, ${today.toLocaleString('default', { month: 'long' })} ${today.getDate()}, ${today.getFullYear()}`;
+  const date = `${today.toLocaleString("default", {
+    weekday: "long",
+  })}, ${today.toLocaleString("default", {
+    month: "long",
+  })} ${today.getDate()}, ${today.getFullYear()}`;
 
   return (
     <>
@@ -14,7 +16,14 @@ function Dashboard() {
 
           <p>{date}</p>
         </div>
-        <div className="Dashboard-body"></div>
+        <div className="Dashboard-body">
+          {/* <div className="Dashboard-my-events-container">
+            <h2>Hello</h2>
+          </div>
+          <div className="Dashboard-my-events-container">
+            <h2>Hello</h2>
+          </div> */}
+        </div>
       </div>
     </>
   );
