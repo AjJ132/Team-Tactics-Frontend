@@ -1,16 +1,15 @@
-
-
-import React, { useState } from 'react';
-import './userprofile.css';
+import React, { useState } from "react";
+import profileImage from "./assets/profile-picture.jpg";
+import "./userprofile.css";
 
 const UserProfile = () => {
   // Sample user data
   const initialUserData = {
-    displayName: 'Josh Williams',
-    username: 'jwil1384',
-    email: 'josh@example.com',
-    phoneNumber: '123-456-7890',
-    profilePicture: '/Users/joshwilliams/Downloads/profilepic.png',
+    displayName: "Josh Williams",
+    username: "jwil1384",
+    email: "josh@example.com",
+    phoneNumber: "123-456-7890",
+    profilePicture: profileImage,
   };
 
   const [userData, setUserData] = useState(initialUserData);
@@ -27,20 +26,19 @@ const UserProfile = () => {
 
   const handleLogout = () => {
     // Add logout logic later, idk how
-    console.log('Logging out...');
+    console.log("Logging out...");
   };
 
   const handleSaveProfile = () => {
     // Need to send this to the backend, not sure how
     setUserData((prevUserData) => ({
       ...prevUserData,
-      displayName: document.getElementById('display-name-input').value,
-      username: document.getElementById('username-input').value,
-      email: document.getElementById('email-input').value,
-      phoneNumber: document.getElementById('phone-number-input').value,
+      displayName: document.getElementById("display-name-input").value,
+      username: document.getElementById("username-input").value,
+      email: document.getElementById("email-input").value,
+      phoneNumber: document.getElementById("phone-number-input").value,
     }));
 
-    
     setEditing(false);
   };
 
@@ -51,9 +49,16 @@ const UserProfile = () => {
           <img
             src={userData.profilePicture}
             className="profile-picture"
-            style={{ marginRight: '10px', borderRadius: '50%', width: '70px', height: '70px', left: '-50px' }}
+            style={{
+              marginRight: "10px",
+              marginBottom: "-25px",
+              borderRadius: "50%",
+              width: "70px",
+              height: "70px",
+              left: "-50px",
+            }}
           />
-          {userData.username}
+          <span className="username-container">{userData.username}</span>
         </h2>
         <p className="user-info-label">
           <strong>DISPLAY NAME</strong>
@@ -120,22 +125,35 @@ const UserProfile = () => {
       <div className="actions">
         {!isEditing && (
           <>
-            <button
-              className="secondary-button change-password-button"
-              onClick={handleChangePassword}
-            >
-              Change Password
-            </button>
-            <button className="secondary-button logout-button" onClick={handleLogout}>
-              Logout
-            </button>
-            <button className="primary-button edit-profile-button" onClick={handleEditProfile}>
-              Edit Profile
-            </button>
+            <div className="profile-creation-buttons-container">
+              <button
+                className="secondary-button change-password-button"
+                onClick={handleChangePassword}
+              >
+                Change Password
+              </button>
+              <button
+                className="secondary-button edit-profile-button"
+                onClick={handleEditProfile}
+              >
+                Edit Profile
+              </button>
+
+              <br />
+              {/* <button
+                className="secondary-button logout-button"
+                onClick={handleLogout}
+              >
+                Logout
+              </button> */}
+            </div>
           </>
         )}
         {isEditing && (
-          <button className="primary-button save-profile-button" onClick={handleSaveProfile}>
+          <button
+            className="primary-button save-profile-button"
+            onClick={handleSaveProfile}
+          >
             Save Profile
           </button>
         )}

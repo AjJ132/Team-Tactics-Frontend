@@ -153,6 +153,16 @@ h3 {
   text-decoration: none;
 }
 
+.nav-username {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.side-nav-username {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.781);
+}
+
 /* Media Queries */
 
 @media only screen and (max-width: 600px) {
@@ -161,7 +171,8 @@ h3 {
   }
 
   .nav-username {
-    display: none;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.781);
   }
 
   .nav-message-icon {

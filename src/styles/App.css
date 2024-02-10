@@ -33,6 +33,11 @@ body {
     display: none;
   }
 
+  .side-nav-username {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.781);
+  }
+
   .nav-message-icon {
     display: none;
   }

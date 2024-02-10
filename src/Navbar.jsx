@@ -39,7 +39,7 @@ function Navbar() {
           </div>
           <div>
             <Link to="/userprofile" className="nav-username">
-                  User Profile 
+              User Profile
             </Link>
           </div>
 
@@ -100,12 +100,11 @@ function Navbar() {
                 Dashboard
               </Link>
             </li>
-            <li> <div>
-            <Link to="/userprofile" className="nav-username">
-                  User Profile 
-            </Link>
-          </div>
-          </li>
+            <li>
+              <Link to="/userprofile" className="side-nav-username">
+                User Profile
+              </Link>
+            </li>
             <li>Messages</li>
             <li>Schedule</li>
             <li>Manage Teams</li>
