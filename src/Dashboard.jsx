@@ -17,12 +17,35 @@ function Dashboard() {
           <p>{date}</p>
         </div>
         <div className="Dashboard-body">
-          {/* <div className="Dashboard-my-events-container">
-            <h2>Hello</h2>
+          <div className="dashboard-components-container">
+            {/* <div>hello</div> */}
+            <div>
+              <div className="dashboard-component-headings">
+                <h2>My Events</h2>
+                <p>See all</p>
+              </div>
+
+              <div className="Dashboard-my-events-container">
+                <p>No events scheduled</p>
+              </div>
+              <div className="dashboard-component-headings">
+                <h2>Teams</h2>
+                <p>See all</p>
+              </div>
+
+              <div className="Dashboard-my-events-container">
+                <p>No teams displayed</p>
+              </div>
+              <div className="dashboard-component-headings">
+                <h2>Messages</h2>
+                <p>See all</p>
+              </div>
+
+              <div className="Dashboard-my-events-container">
+                <p>No messages</p>
+              </div>
+            </div>
           </div>
-          <div className="Dashboard-my-events-container">
-            <h2>Hello</h2>
-          </div> */}
         </div>
       </div>
     </>

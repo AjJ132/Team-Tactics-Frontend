@@ -29,8 +29,43 @@
 
 .Dashboard-my-events-container {
   width: 800px;
-  height: 200px;
+  height: 160px;
   background-color: white;
+  margin-bottom: 60px;
+  margin-top: 2px;
+  border: 1px solid rgba(138, 138, 138, 0.216);
+  border-radius: 5px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.053);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-component-headings {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.dashboard-component-headings p {
+  margin-top: 15.5px;
+  margin-left: 5px;
+  font-size: 12px;
+  color: rgb(64, 134, 191);
+  font-weight: bold;
+}
+
+.dashboard-components-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  /* margin-bottom: 40px; */
+}
+
+.dashboard-components-container h2 {
+  /* margin-top: 0; */
 }
 
 /* Media Queries */
@@ -38,6 +73,10 @@
 @media only screen and (max-width: 600px) {
   #team-tactics-logo {
     display: none;
+  }
+
+  .Dashboard-body {
+    padding: 2em;
   }
 
   .nav-username {
@@ -145,5 +184,54 @@
 
   .Dashboard-heading h2 {
     margin-left: 0;
+  }
+
+  div {
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .Dashboard-heading h2 {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .Dashboard-heading h2 {
+    font-size: 13px;
+  }
+  .Dashboard-heading p {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .Dashboard-my-events-container {
+    width: 600px;
+    height: 160px;
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .Dashboard-my-events-container {
+    width: 360px;
+    height: 160px;
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .Dashboard-my-events-container {
+    width: 260px;
+    height: 160px;
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 }
