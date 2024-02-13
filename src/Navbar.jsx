@@ -97,7 +97,11 @@ function Navbar() {
               </Link>
             </li>
             <li>Profile</li>
-            <li>Messages</li>
+            <li>
+              <Link to="/messages" className="nav-dashboard">
+                Messages
+              </Link>
+            </li>
             <li>Schedule</li>
             <li>Manage Teams</li>
             <li>Logout</li>
