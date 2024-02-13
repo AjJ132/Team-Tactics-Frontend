@@ -45,6 +45,9 @@ function Messages() {
             <Message />
             <Message />
             <Message />
+            <div className="load-more-messages-container">
+              <div className="load-more-messages">Load more</div>
+            </div>
           </div>
           <div></div>
           <div className="Messages-message-chat">
