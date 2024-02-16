@@ -2,17 +2,23 @@ export const http_context = async (url, options) => {
     try {
         const response = await fetch(url, options);
 
-        //Might use this later to redirect to login page if token is expired -AJ
-        // if(response.status === 401){
-            
-        //     window.location.href = '/signin';
-        //     console.log('401');
-        // }
+        if(response.status === 401 && window.location.pathname !== '/user-signin' ) {
+            window.location.href = '/user-signin';
+            console.log('401');
+        }
 
         return response;
     } catch (error) {
         console.log('Server Offline');
         console.error('HTTP Context Error Thrown: ', error);
+        
+        if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        // Redirect to a different page when the server is offline
+        if (window.location.pathname !== '/server-offline' && window.location.pathname !== '/user-signin') {
+            window.location.href = '/server-offline';
+        }
+}
+
         throw error;
     }
 };

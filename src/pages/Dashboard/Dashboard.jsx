@@ -1,6 +1,11 @@
 import { useState } from "react";
+import Navbar from "../../components/navbar/Navbar";
+import { useUserContext } from "../../contexts/userContext";
 
 function Dashboard() {
+  const user = useUserContext();
+
+
   const today = new Date();
   const date = `${today.toLocaleString("default", {
     weekday: "long",
@@ -10,9 +15,10 @@ function Dashboard() {
 
   return (
     <>
+      <Navbar />
       <div className="Dashboard">
         <div className="Dashboard-heading">
-          <h2>Welcome, User</h2>
+          <h2>Welcome, {user.firstName}</h2>
 
           <p>{date}</p>
         </div>
