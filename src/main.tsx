@@ -6,10 +6,10 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import SignIn from './pages/SigninSignup/Signin'
 import AuthProvider from './providers/AuthProvider'
 import ProtectedRoute from './components/Protected Route/ProtectedRoute'
+import { Layout } from './components/Layout/Layout'
 
 // CSS IMPORTS ------------------------------
 
-import "./styles/App.css";
 import "./styles/Navbar.css";
 import "./styles/Dashboard.css";
 import "./styles/Signin.css";
@@ -22,19 +22,14 @@ import { User } from './Interfaces/User'
 
 // ------------------------------------------
 
-const user: User = {
-  firstName: "John",
-  lastName: "Doe",
-  userId: "1234",
-  email: "testuser@gmail.com",
-};
-
 const router = createBrowserRouter([
   {
     path: '/',
     element: 
       <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
-        <Dashboard />
+        <Layout>
+          <Dashboard />
+        </Layout>
       </ProtectedRoute>,
   },
   {
@@ -46,9 +41,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
-      
         <RouterProvider router={router} />
-      
     </AuthProvider>
   </React.StrictMode>,
 )

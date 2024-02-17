@@ -1,6 +1,9 @@
 import { useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../../components/navbar/SideNavbar";
 import { useAuth } from "../../providers/AuthProvider";
+import DashboardHeader from "../../components/Dashboard Header/DashboardHeader";
+import SideNavbar from "../../components/navbar/SideNavbar";
+import TopNavbar from "../../components/navbar/TopNavbar";
 
 function Dashboard() {
   const auth = useAuth();
@@ -13,14 +16,6 @@ function Dashboard() {
   })} ${today.getDate()}, ${today.getFullYear()}`;
 
   return (
-    <>
-      <Navbar />
-      <div className="Dashboard">
-        <div className="Dashboard-heading">
-          <h2>Welcome, {auth.user?.firstName}</h2>
-
-          <p>{date}</p>
-        </div>
         <div className="Dashboard-body">
           <div className="dashboard-components-container">
             {/* <div>hello</div> */}
@@ -52,8 +47,6 @@ function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
-    </>
   );
 }
 
