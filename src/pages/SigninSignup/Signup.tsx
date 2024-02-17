@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { signup_service } from "../../services/loginservice";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -7,32 +6,12 @@ function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const formSubmission = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await signup_service(email, password, firstName, lastName);
-      if (res) {
-        console.log("successfull signup");
-
-        // redirect to dashboard
-      } else if (res === 409) {
-        console.log("username already exists");
-
-        //DEV
-        alert("Username already exists");
-      }
-    } catch (error) {
-      console.error("Sign un has failed", error);
-
-      //DEV
-      alert("Critical Error: Failed to sign up");
-    }
-  };
+ 
   return (
     <>
       <div className="Signin">
         <div className="form-container">
-          <form onSubmit={formSubmission}>
+          <form>
             <div className="signin-container">
               <h1>Sign Up</h1>
               <label className="signin-label-username">First Name</label>

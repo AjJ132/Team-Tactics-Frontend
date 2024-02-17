@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import { useUserContext } from "../../contexts/UserContext";
+import { useAuth } from "../../providers/AuthProvider";
 
 function Dashboard() {
-  const user = useUserContext();
+  const auth = useAuth();
   
   const today = new Date();
   const date = `${today.toLocaleString("default", {
@@ -17,7 +17,7 @@ function Dashboard() {
       <Navbar />
       <div className="Dashboard">
         <div className="Dashboard-heading">
-          <h2>Welcome, {user.firstName}</h2>
+          <h2>Welcome, {auth.user?.firstName}</h2>
 
           <p>{date}</p>
         </div>

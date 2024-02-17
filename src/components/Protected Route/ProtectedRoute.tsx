@@ -6,14 +6,14 @@ type ProtectedRouteProps = PropsWithChildren;
 
 
 export default function ProtectedRoute({children} : ProtectedRouteProps) {
-    const user = useAuth();
+    const auth = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(user === null){
+        if(auth.user === null){
             navigate('/signin', { replace: true });
         }
-    }, [navigate, user]);
+    }, [navigate, auth.user]);
 
     return children;
 };

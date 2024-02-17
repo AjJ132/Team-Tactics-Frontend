@@ -1,33 +1,44 @@
 import { useState } from "react";
+import { useAuth } from "../../providers/AuthProvider";
+import { UserSignin } from "../../api/AuthAPIFunctions";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const formSubmission = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     // const res = await signin_service(email, password);
-  //     if (res) {
-  //       console.log("successfull signin");
+  const auth = useAuth();
+  const navigate = useNavigate();
 
-  //       // redirect to dashboard
-  //     } else {
-  //       console.log("failed signin");
+  const formSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+       const response = await UserSignin(email, password);
+      if (response) {
+        console.log("successfull signin");
 
-  //       //DEV
-  //       alert("Failed to sign in");
-  //     }
-  //   } catch (error) {
-  //     console.error("Sign in has failed", error);
-  //   }
-  // };
+        // Update auth context with the user object, also sets isAuthenticated to true
+        auth.loginSuccess(response);
+
+        //redirect to dashboard
+        navigate("/", { replace: true });
+
+      } else {
+        console.log("failed signin");
+
+        //DEV
+        alert("Failed to sign in");
+      }
+    } catch (error) {
+      console.error("Sign in has failed", error);
+    }
+  };
 
   return (
     <>
       <div className="Signin">
         <div className="form-container">
-          <form>
+          <form onSubmit={formSubmission}>
             <div className="signin-container">
               <h1>Sign In</h1>
               <label className="signin-label-username">Email</label>
