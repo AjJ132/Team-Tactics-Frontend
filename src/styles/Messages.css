@@ -1,0 +1,87 @@
+.Messages-message-list {
+  background-color: white;
+  margin-left: 230px;
+  height: calc(100vh - 13.8vh);
+  width: 240px;
+  /* padding: 10px; */
+  border: 1px solid rgba(0, 0, 0, 0.117);
+}
+
+.Messages-message-chat {
+  color: black;
+  background-color: var(--background-color);
+  /* padding: 10px; */
+  width: 1180px;
+}
+
+.Messages-container {
+  display: flex;
+}
+
+.Messages-chat-heading {
+  padding: 11.8px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.117);
+  display: flex;
+  align-items: center;
+}
+
+.Message-chat-heading-name {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.Message-footer {
+  padding: 15px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.117);
+  position: fixed;
+  bottom: 0;
+  width: 67.35%;
+  border-right: 1px solid rgba(0, 0, 0, 0.037);
+}
+.Message-footer input {
+  margin-left: 10px;
+  padding: 4px;
+  width: 91.5%;
+  border: 1px solid rgba(0, 0, 0, 0.201);
+}
+.send-message-button {
+  padding: 5px 15px;
+  margin-left: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 2px;
+}
+
+.Message-search {
+  display: flex;
+
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.143);
+}
+
+.Message-search input {
+  padding: 4px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.201);
+  border-radius: 5px;
+}
+
+.Message-search-icon {
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.load-more-messages {
+  color: rgb(77, 146, 210);
+  font-size: 13px;
+}
+
+.load-more-messages-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+}
