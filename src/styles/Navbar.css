@@ -2,7 +2,7 @@
 
 .top-navbar {
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: var(--primary-color);
   padding: 12px 30px;
 
@@ -15,7 +15,7 @@
 
 .side-nav {
   
-  width: 22vw;
+  width: 18vw;
   height: 100%;
   overflow-x: hidden;
   background-color: var(--primary-color);
@@ -25,45 +25,95 @@
 
   color: var(--secondary-color);
 
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 15px;
+  transition: width 0.2s ease-out; /* Corrected the spacing in the duration */
 }
 
-.side-nav p{
-  margin-left: 15px;
-  
-  
-  font-size: 1.5rem;
-  font-weight: 400;
-
+/* Adjusted styles when the navbar is closed */
+.side-nav-closed {
+  padding: 12px;
+  width: 5vw !important; /* Or a fixed width like 50px */
 }
 
-.side-nav ul {
-  list-style-type: none;
-  padding: 0;
+/* Hide text next to icons when navbar is closed */
+.side-nav-closed .side-nav-buttons button p {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s; /* Add delay to visibility */
 }
 
-.side-nav li {
-  
-  
+/* Adjust button padding to be tighter when navbar is closed */
+.side-nav-closed .side-nav-buttons button {
+  padding: 12px;
+  align-items: center;
+  justify-content: center; /* Center the icon */
 }
 
-.side-nav li a {
+.side-nav .side-nav-buttons button p {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+/* Optionally adjust banner style when navbar is closed */
+.side-nav-closed .side-nav-banner {
+  justify-content: center; /* Center content in the banner */
+  padding: 4px; /* Adjust padding */
+}
+
+.side-nav-banner{
   display: flex;
-  align-items: center; /* Aligns the icon and text */
-  text-decoration: none;
-  
-  padding: 10px; /* Padding around text and icon */
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 
+  background-color: var(--secondary-transparent);
+  border-radius: 6px;
+  border: 1px solid var(--secondary-transparent);
+  padding: 6px;
+  cursor: pointer;
+}
+
+.side-nav-buttons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 4px;
+}
+
+.side-nav-buttons button{
+  width: 100%;
+  height: 40px; /* Example fixed height */
+  background-color: var(--primary-color);
+  border: none;
   color: var(--secondary-color);
+  font-size: 1.2em;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   
-  border-radius: 5px; /* Rounds the corners */
 }
 
-.side-nav li a:hover {
-  background-color: var(--secondary-semi-transparent); /* Background color on hover */
+.side-nav-buttons .selected{
+  background-color: var(--secondary-transparent);
 }
 
-.fa-fw { /* Ensures fixed width for icons */
-  margin-right: 10px; /* Space between icon and text */
+.side-nav-buttons p{
+  margin-left: 15px;
+  /* Force in line */
+  display: inline;
+}
+
+.side-nav-buttons button:hover{
+  background-color: var(--secondary-transparent);
 }

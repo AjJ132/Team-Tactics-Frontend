@@ -1,86 +1,76 @@
-import { useState } from "react";
-import { useAuth } from "../../providers/AuthProvider";
-import { UserSignin } from "../../api/AuthAPIFunctions";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from 'react';
+import './signin-signup.css';
+import {useNavigate} from 'react-router-dom';
+import { UserSignin } from '../../api/AuthAPIFunctions';
+import logo from '../../../public/vite.svg'
+import { useContext } from 'react';
+import { useAuth } from '../../providers/AuthProvider'
 
-function Signin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const UserSigninPage = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-  const auth = useAuth();
-  const navigate = useNavigate();
+    const auth = useAuth();
 
-  const formSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-       const response = await UserSignin(email, password);
-      if (response) {
-        console.log("successfull signin");
+    const navigate = useNavigate();
 
-        // Update auth context with the user object, also sets isAuthenticated to true
-        auth.loginSuccess(response);
-
-        //redirect to dashboard
-        navigate("/", { replace: true });
-
-      } else {
-        console.log("failed signin");
-
-        //DEV
-        alert("Failed to sign in");
+    const handlesignin = async () => {
+      try {
+          const response = await UserSignin(username, password);
+  
+          if (response) {
+              // If the response is not null, then the user is signed in
+              //set the user object in the context and set isAuthenticated to true
+              auth.loginSuccess(response);
+              navigate('/');
+          } else {
+              // Handle sign-in failure without throwing an error, as error is logged in UserSignin
+              console.error("Failed: Error signing in");
+          }
+      } catch (error) {
+          // Handle unexpected errors that might occur outside the try-catch in UserSignin
+          console.error("Unexpected error: ", error);
       }
-    } catch (error) {
-      console.error("Sign in has failed", error);
-    }
   };
+  
 
-  return (
-    <>
-      <div className="Signin">
-        <div className="form-container">
-          <form onSubmit={formSubmission}>
-            <div className="signin-container">
-              <h1>Sign In</h1>
-              <label className="signin-label-username">Email</label>
-              <br />
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />{" "}
-              <br />
-              <label className="signin-label-password">Password</label>
-              <br />
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <div className="signin-checkbox-container">
-                <input type="checkbox" id="keepmesignedin" />
-                <label>Keep me signed in</label>
-              </div>
-              <button type="submit" className="login-btn">
-                SIGN IN
-              </button>
-              <div className="signin-forgot-user-container">
-                <a>Forgot username?</a>
-                <a>Help center</a>
-              </div>
+    
+
+    return (
+        <div className='signin-page'>
+            <div className="modal-content">
+                <div className="flex flex-row items-center justify-start gap-2 w-full pb-8">
+                    <img src={logo} alt="logo" width={75}/>
+                    <h1>Team Tactics</h1>
+                </div>
+
+                <div className="flex flex-row content-center justify-start gap-2 w-full pt-8">
+                    <h2>User Sign In</h2>
+                </div>  
+                <div className="flex flex-col content-center justify-start gap-0 w-full pt-8">
+                    <p>Username<strong>*</strong></p>
+                    <input type="text" placeholder="Username" className="modal-content-input" onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className="flex flex-col content-center justify-start gap-0 w-full pt-6">
+                    <p>Password<strong>*</strong></p>
+                    <input type="password" placeholder="Password" className="modal-content-input" onChange={(e) => setPassword(e.target.value)} />
+                </div>
+
+                <div className="flex flex-row content-center justify-start gap-2 w-full pt-2">
+                    <p>Forgot password? <a >Reset Password</a></p>
+                </div>
+
+                <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
+                    <button className="modal-content-btn signin-btn" onClick={handlesignin}>Sign In</button>
+                </div>
+
+                <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
+                    <p>Don't have an account? <a href="/user-registration">Sign Up</a></p>
+                </div>
+
             </div>
-          </form>
         </div>
-      </div>
-    </>
-  );
-}
+    );
+};
 
-export default Signin;
+export default UserSigninPage;

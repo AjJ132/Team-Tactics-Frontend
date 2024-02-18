@@ -1,105 +1,123 @@
-/* Signin/Signup styles */
-
-.Signin {
-  color: black;
-  background-color: var(--background-color);
+.signin-page {
+  width: 100%;
   height: 100vh;
-  padding: 0;
-}
-
-.Signin h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  margin-top: 0;
-}
-
-.signin-container {
-  width: 100%;
-  flex-grow: 1;
-  max-width: 400px;
-  padding: 40px;
-  background-color: white;
-  margin-top: 80px;
-  border: 1px solid rgb(194, 192, 192);
-  border-radius: 5px;
-}
-
-.signin-forgot-user-container {
   display: flex;
-  justify-content: space-evenly;
-}
-
-.signin-label-username {
-  font-size: 13px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.signin-label-password {
-  font-size: 13px;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.signin-checkbox-container {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  position: relative; /* Needed for absolute positioning of pseudo-elements */
+  background: linear-gradient(45deg, rgb(109, 109, 109) 30%, gray 30%, white 100%);
+  background-size: 200% 200%;
+  -webkit-animation: userBackgroundAnimationWK 200s ease infinite;
+  -moz-animation: userBackgroundAnimationMZ 200s ease infinite;
+  animation: userBackgroundAnimation 200s ease infinite;
 }
 
-.signin-checkbox-container input {
-  margin-right: 10px;
-}
-.signin-checkbox-container label {
-  color: rgb(159, 159, 159);
-  font-size: 13px;
-}
-
-.login-btn {
-  padding: 10px;
-  color: white;
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-  border-radius: 5px;
-  margin-bottom: 40px;
-  font-weight: bold;
-  font-size: 15px;
+/* Adding pseudo-element for the shadow effect */
+.signin-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  flex-grow: 1;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.2) 100%);
+
 }
 
-input {
-  padding: 10px;
-  box-sizing: border-box;
+.signin-btn{
+  background-color: #ff8c00;
+  transition: all 0.3s ease;
 }
 
-#username {
-  width: 100%;
-  flex-grow: 1;
-  margin-bottom: 20px;
-  margin-top: 4px;
+.signin-btn:hover{
+  background-color: #ff9c23;
+  scale: 1.01;
 }
 
-#signin-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.register-page{
+  background: linear-gradient(45deg, var(--link-color) 0%, var(--link-color) 70%, var(--accent-color) 70%);
 }
 
-.form-container {
-  display: flex;
-  justify-content: center;
-}
-form {
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
+.signin-modal strong{
+color: red;
 }
 
-.signin-link {
-  text-decoration: none;
-  color: white;
+.register-modal{
+  height: fit-content;
+}
+
+.register-modal ul {
+list-style-position: inside; /* Moves the bullet points inside the content flow */
+}
+
+@-webkit-keyframes adminBackgroundAnimationWK {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes adminBackgroundAnimationMZ {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+@keyframes adminBackgroundAnimation {
+  0% {
+      background-position: 0% 55%;
+  }
+  50% {
+      background-position: 70% 50%;
+  }
+  100% {
+      background-position: 0% 55%;
+  }
+}
+
+@-webkit-keyframes userBackgroundAnimationWK {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+@-moz-keyframes userBackgroundAnimationMZ {
+0% {
+    background-position: 0% 50%;
+}
+50% {
+    background-position: 100% 50%;
+}
+100% {
+    background-position: 0% 50%;
+}
+}
+
+@keyframes userBackgroundAnimation {
+0% {
+    background-position: 45% 0%;
+}
+50% {
+    background-position: 30% 50%;
+}
+100% {
+    background-position: 45% 0%;
+}
 }
