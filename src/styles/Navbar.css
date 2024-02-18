@@ -1,269 +1,119 @@
 /* Navbar styles */
 
-.Navbar {
+.top-navbar {
+  width: 100%;
+  height: 50px;
+  background-color: var(--primary-color);
+  padding: 12px 30px;
+
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background-color: var(--primary-color);
+  align-items: center;
+
+  color: var(--secondary-color);
 }
 
 .side-nav {
-  color: var(--text-color1);
-  width: 230px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
+  
+  width: 18vw;
+  height: 100%;
   overflow-x: hidden;
-  background-color: var(--secondary-color);
-}
+  background-color: var(--primary-color);
 
-.side-nav li {
-  text-align: left;
-  padding: 26px 26px;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.781);
-  background-color: var(--secondary-color);
-}
-
-.side-nav li:hover {
-  background-color: var(--hover-color);
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-#team-tactics-logo {
-  padding: 0;
-  margin: 0;
-}
-
-.nav-elements-1-2 {
   display: flex;
+  flex-direction: column;
 
-  margin-right: 10px;
+  color: var(--secondary-color);
+
+  padding: 15px;
+  transition: width 0.2s ease-out; /* Corrected the spacing in the duration */
 }
 
-.nav-elements-1-2 div {
-  display: flex;
+/* Adjusted styles when the navbar is closed */
+.side-nav-closed {
+  padding: 12px;
+  width: 5vw !important; /* Or a fixed width like 50px */
+}
+
+/* Hide text next to icons when navbar is closed */
+.side-nav-closed .side-nav-buttons button p {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s; /* Add delay to visibility */
+}
+
+/* Adjust button padding to be tighter when navbar is closed */
+.side-nav-closed .side-nav-buttons button {
+  padding: 12px;
   align-items: center;
-  margin-right: 10px;
+  justify-content: center; /* Center the icon */
 }
 
-.nav-elements-3-4 div {
-  margin-right: 10px;
+.side-nav .side-nav-buttons button p {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
 }
-.nav-elements-3-4 {
+
+/* Optionally adjust banner style when navbar is closed */
+.side-nav-closed .side-nav-banner {
+  justify-content: center; /* Center content in the banner */
+  padding: 4px; /* Adjust padding */
+}
+
+.side-nav-banner{
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-}
-.flex-row {
-  display: flex;
+
+  background-color: var(--secondary-transparent);
+  border-radius: 6px;
+  border: 1px solid var(--secondary-transparent);
+  padding: 6px;
+  cursor: pointer;
 }
 
-.nav-message-icon {
+.side-nav-buttons {
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 4px;
+}
+
+.side-nav-buttons button{
+  width: 100%;
+  height: 40px; /* Example fixed height */
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
+  padding-left: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  
 }
 
-.nav-search-icon {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-.profile-pic-small {
-  width: 30px;
-  height: 30px;
-  background-color: cadetblue;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
+.side-nav-buttons .selected{
+  background-color: var(--secondary-transparent);
 }
 
-.bar {
-  display: none;
+.side-nav-buttons p{
+  margin-left: 15px;
+  /* Force in line */
+  display: inline;
 }
 
-.profile-pic-small p {
-  margin-left: 6px;
-}
-
-.profile-pic-large {
-  width: 110px;
-  height: 110px;
-  background-color: cadetblue;
-  border-radius: 50%;
-  display: flex;
-  /* text-align: center;
-  line-height: 100px; */
-}
-
-.profile-pic-large div {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin-left: 29px;
-}
-
-.profile-pic-large p {
-  text-align: center;
-  font-size: 40px;
-  /* font-family: sans-serif; */
-}
-
-.profile-pic-large-container {
-  margin-top: 24px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-#side-nav-username {
-  text-align: center;
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.417); */
-}
-
-.divider {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.417);
-}
-
-.menu {
-  display: none;
-}
-
-.nav-elements-1-2 div {
-  display: none;
-}
-.bar {
-  width: 24px;
-  height: 2px;
-  background-color: var(--text-color1);
-  margin: 3px 0;
-  transition: 0.4s;
-}
-
-.nav-dashboard {
-  color: rgba(255, 255, 255, 0.781);
-  text-decoration: none;
-}
-
-/* Media Queries */
-
-@media only screen and (max-width: 600px) {
-  #team-tactics-logo {
-    display: none;
-  }
-
-  .nav-username {
-    display: none;
-  }
-
-  .nav-message-icon {
-    display: none;
-  }
-
-  .nav-search-icon {
-    display: none;
-  }
-
-  .side-nav {
-    color: var(--text-color1);
-    width: 100vh;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    overflow-x: hidden;
-    background-color: var(--secondary-color);
-  }
-
-  .profile-pic-large-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .profile-pic-large {
-    width: 50px;
-    height: 50px;
-    background-color: cadetblue;
-    border-radius: 50%;
-    display: flex;
-    /* text-align: center;
-  line-height: 100px; */
-  }
-
-  .profile-container {
-    display: flex;
-  }
-
-  .profile-pic-large div {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-left: 12px;
-  }
-
-  .profile-pic-large p {
-    text-align: center;
-    font-size: 20px;
-    /* font-family: sans-serif; */
-  }
-
-  #side-nav-username {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    margin-top: 2px;
-  }
-
-  #side-nav-username h3 {
-    font-size: 16px;
-  }
-
-  .side-nav li {
-    text-align: left;
-    padding: 22px;
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.781);
-    background-color: var(--secondary-color);
-  }
-
-  .menu {
-    /* display: inline-block; */
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  .bar {
-    width: 24px;
-    height: 2px;
-    background-color: var(--text-color1);
-    margin: 3px 0;
-    transition: 0.4s;
-  }
-
-  .nav-elements-1-2 {
-    display: flex;
-
-    margin-right: 10px;
-  }
-
-  .nav-elements-1-2 div {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-
-  .Dashboard-heading h2 {
-    margin-left: 0;
-  }
+.side-nav-buttons button:hover{
+  background-color: var(--secondary-transparent);
 }
