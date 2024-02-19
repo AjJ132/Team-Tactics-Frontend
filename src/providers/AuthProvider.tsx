@@ -28,6 +28,8 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     //--------------------offline mode-------------------
+    //use offline mode when not running the server.
+    // as we update the data being used it might be useful to update this offline code with sample data to match. --AJ
     const [offlineMode, setOfflineMode] = useState<boolean>(false);
     const [offlineUser, setOfflineUser] = useState<User | null>({
         userId: "offlineUserId",
@@ -36,22 +38,23 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
         email: "johdoe123@gmail.com",
     });
 
+    //on login success, set the user and isAuthenticated to true
     const loginSuccess = (loggedInUser: User) => {
         setUser(loggedInUser);
         setIsAuthenticated(true);
       };
 
+      //Method to swap in and out of offline mode
     const toggleOfflineMode = (value: boolean) => {
         console.log('offline mode', value);
         setOfflineMode(value);
         
+        //set the user to the offline user <-- John Doe
         setUser(value ? offlineUser : null);
         setIsAuthenticated(value);
 
-        //set local storage
+        //set local storage, toggle local storage to help with maintaining offline mode when the page refreshes/reloads
         localStorage.setItem('offlineMode', value.toString());
-
-        //TODO: force the reload of the page to update the context
     };
       
 
@@ -60,13 +63,14 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
             //check for offline mode, read local storage
             const offlineMode = localStorage.getItem('offlineMode');
 
+            //if offline mode is true, set the user to the offline user. This is to help with maintaining offline mode when the page refreshes/reloads
             if(offlineMode === 'true'){
                 setOfflineMode(true);
                 setUser(offlineUser);
                 setIsAuthenticated(true);
                 setIsLoading(false);
                 return;
-            } else
+            } else //else update the state to false
             {
                 setOfflineMode(false);
 
@@ -87,6 +91,7 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
 
             setIsLoading(true);
             try {
+                console.log('checking authentication');
                 const result = await CheckAuthentication(); // Ensure this function is typed correctly
                 if (result && result.isAuthenticated) {
                     const user: User = result.user; // Casting to User type
