@@ -9,25 +9,71 @@ type AuthProviderProps = PropsWithChildren & {
     user: User | null;
     isLoading?: boolean;
     loginSuccess: (loggedInUser: User) => void;
-  };
-  
+    toggleOfflineMode: (toggleOfflineMode: boolean) => void;
+    offlineMode?: boolean;
+};
 
-
-const AuthContext = createContext<AuthProviderProps>({ user: null, isAuthenticated: false, isLoading: true, loginSuccess: () => {} });
+const AuthContext = createContext<AuthProviderProps>({ 
+    user: null, 
+    isAuthenticated: false, 
+    isLoading: true, 
+    loginSuccess: () => {},
+    toggleOfflineMode: () => {},
+    offlineMode: false,
+});
 
 export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
+    //--------------------offline mode-------------------
+    const [offlineMode, setOfflineMode] = useState<boolean>(false);
+    const [offlineUser, setOfflineUser] = useState<User | null>({
+        userId: "offlineUserId",
+        firstName: "John",
+        lastName: "Doe",
+        email: "johdoe123@gmail.com",
+    });
+
     const loginSuccess = (loggedInUser: User) => {
         setUser(loggedInUser);
         setIsAuthenticated(true);
       };
+
+    const toggleOfflineMode = (value: boolean) => {
+        console.log('offline mode', value);
+        setOfflineMode(value);
+        
+        setUser(value ? offlineUser : null);
+        setIsAuthenticated(value);
+
+        //set local storage
+        localStorage.setItem('offlineMode', value.toString());
+
+        //TODO: force the reload of the page to update the context
+    };
       
 
     useEffect(() => {
         const authenticateUser = async () => {
+            //check for offline mode, read local storage
+            const offlineMode = localStorage.getItem('offlineMode');
+
+            if(offlineMode === 'true'){
+                setOfflineMode(true);
+                setUser(offlineUser);
+                setIsAuthenticated(true);
+                setIsLoading(false);
+                return;
+            } else
+            {
+                setOfflineMode(false);
+
+                //update the local storage
+                localStorage.setItem('offlineMode', 'false');
+            }
+
             //if at signin page, do not check for authentication
             if(window.location.pathname === '/signin'){
                 setIsLoading(false);
@@ -66,19 +112,19 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, isLoading, loginSuccess }}>
-            {children}
-        </AuthContext.Provider>
+                <AuthContext.Provider value={{ user, isAuthenticated, isLoading, loginSuccess, toggleOfflineMode: toggleOfflineMode, offlineMode }}>
+                    {children}
+                </AuthContext.Provider>
 
-    );
-}
+            );
+        }
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-   
-    if (context === undefined){
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
+        export const useAuth = () => {
+            const context = useContext(AuthContext);
+           
+            if (context === undefined){
+                throw new Error('useAuth must be used within an AuthProvider');
+            }
 
-    return context;
-}
+            return context;
+        }

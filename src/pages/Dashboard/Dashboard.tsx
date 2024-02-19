@@ -14,8 +14,11 @@ function Dashboard() {
   return (
     <div className="Dashboard-body">
     <div className="dashboard-components-container">
+      <h1>
+        Good {today.getHours() < 12 ? "Morning" : today.getHours() < 18 ? "Afternoon" : "Evening"}, {auth.user?.firstName}!
+      </h1>
       {/* <div>hello</div> */}
-      <div>
+      {/* <div>
         <div className="dashboard-component-headings">
           <h2>My Events</h2>
           <p>See all</p>
@@ -40,7 +43,7 @@ function Dashboard() {
         <div className="Dashboard-my-events-container">
           <p>No messages</p>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
   );

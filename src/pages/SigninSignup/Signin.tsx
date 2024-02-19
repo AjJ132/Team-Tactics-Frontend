@@ -32,6 +32,12 @@ const UserSigninPage = () => {
           console.error("Unexpected error: ", error);
       }
   };
+
+  const handleOfflineMode = () => {
+    console.log('offline mode');
+    auth.toggleOfflineMode(true)
+    navigate('/');
+  };
   
 
     
@@ -66,6 +72,11 @@ const UserSigninPage = () => {
 
                 <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
                     <p>Don't have an account? <a href="/user-registration">Sign Up</a></p>
+                </div>
+
+                <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
+                    <p>DEV__OFFLINE MODE</p>
+                    <button onClick={handleOfflineMode}>Offline Mode</button>
                 </div>
 
             </div>
