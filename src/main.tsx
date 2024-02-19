@@ -18,6 +18,7 @@ import "./styles/Message.css";
 import "./index.css";
 import { UserContext } from './contexts/UserContext'
 import { User } from './Interfaces/User'
+import CalendarProvider from './providers/CalendarProvider'
 
 
 // ------------------------------------------
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
+      <CalendarProvider>
         <RouterProvider router={router} />
+      </CalendarProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
