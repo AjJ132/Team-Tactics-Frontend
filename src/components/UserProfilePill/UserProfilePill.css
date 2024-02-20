@@ -1,4 +1,5 @@
 .profile-pill-container{
+    min-width: 250px;
     width: fit-content;
     height: 70px;
     max-height: 70px;

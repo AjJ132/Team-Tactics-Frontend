@@ -24,7 +24,7 @@ function ProtoTypeNavbar() {
 
   return (
     <div className="top-navbar">
-        <h3>TeamTactics</h3>
+        <h3 className="font-bold">TeamTactics</h3>
         <NavbarLinksProto />
         <NavbarProfileSection />
     </div>

@@ -219,30 +219,30 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     return (
         <div className='w-full h-full flex flex-col pl-6 pr-6'>
            <div className="flex flex-row justify-between content-center w-full mb-4 pl-4 pr-4 mt-4">
-                    <button className="flex flex-row justify-center items-center p-2 w-fit h-fit gap-2">
-                        <FontAwesomeIcon icon={faPlus} /> <p>Add Event</p>
+                <button className="flex flex-row justify-center items-center p-2 w-fit h-fit gap-2">
+                    <FontAwesomeIcon icon={faPlus} /> <p>Add Event</p>
+                </button>
+                <h2 className="text-center calendar-text font-bold">{format(currentMonth, "MMMM yyyy")}</h2>
+                
+                <div className="date-change-button">
+                    <button className="no-border-radius" onClick={toToday}>
+                        <div>Today</div>
                     </button>
-                    <h2 className="text-center calendar-text font-bold">{format(currentMonth, "MMMM yyyy")}</h2>
+                    <button onClick={toPreviousMonth}>
+                        <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button className="no-border-radius">
+                        <div>{currentMonth.toLocaleString('default', { month: 'short' })}</div>
+                    </button>
+                    <button onClick={toNextMonth}>
+                        <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
                     
-                    <div className="date-change-button">
-                        <button className="no-border-radius" onClick={toToday}>
-                            <div>Today</div>
-                        </button>
-                        <button onClick={toPreviousMonth}>
-                            <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </button>
-                        <button className="no-border-radius">
-                            <div>{currentMonth.toLocaleString('default', { month: 'short' })}</div>
-                        </button>
-                        <button onClick={toNextMonth}>
-                            <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                       
-                    </div>
+                </div>
             </div>
             <div className="card p-8 grid grid-cols-7 gap-0 calendar-text h-full" style={{ gridTemplateRows: '0.2fr 1fr 1fr 1fr 1fr 1fr 1fr'}}>
                     {WEEKDAYS.map((day) => (

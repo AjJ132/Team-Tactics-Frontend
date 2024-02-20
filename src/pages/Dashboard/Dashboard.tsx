@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faEnvelope, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faEnvelope, faGear, faGears, faXmark } from "@fortawesome/free-solid-svg-icons";
 import UserProfilePill from "../../components/UserProfilePill/UserProfilePill";
 import CalendarEventPill from "../../components/CalendarEventPill/CalendarEventPill";
 
@@ -25,19 +25,19 @@ function Dashboard() {
           </h1>
           <div className="flex flex-row gap-16 ml-auto">
             <div className="flex flex-row gap-4">
-              <div className="card p-20">
+              <div className="card p-20 cursor-pointer">
                 <FontAwesomeIcon className="scale-150" icon={faEnvelope} size="2xl"/>
               </div>
               <div className="flex flex-col">
                 <h2>Messages</h2>
                 <p><strong style={{color: 'var(--accent-color)'}}>3</strong> new messages</p>
                 <div className="mt-auto">
-                  <UserProfilePill name={auth.user?.firstName + ' ' + auth.user?.lastName} role="Coach" />
+                  <UserProfilePill name='Coach Mike' role="Coach" />
                 </div>
               </div>
             </div>
             <div className="flex flex-row gap-4">
-              <div className="card p-20">
+              <div className="card p-20 cursor-pointer">
                 <FontAwesomeIcon className="scale-150" icon={faCalendarDays} size="2xl"/>
               </div>
               <div className="flex flex-col">
@@ -48,10 +48,11 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+          </div>
+          <div className="flex flex-col gap-4 ml-8">
               <div className="icon-button">
                 <button className="p-12">
-                  <FontAwesomeIcon icon={faCalendarDays} size="2xl" />
+                  <FontAwesomeIcon icon={faGears} size="2xl" />
                 </button>
               </div>
               <div className="icon-button">
@@ -60,7 +61,6 @@ function Dashboard() {
                 </button>
               </div>
             </div>
-          </div>
         </div>
         <div>
           <div className="card w-full p-4">

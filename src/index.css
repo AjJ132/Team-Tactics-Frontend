@@ -20,8 +20,10 @@
   max-height: 100vh;
   overflow: hidden;
 
+  --primary-color-light: #f5f5f5;
   --primary-color: #0d0d0d;   /* 60% of the usage */
   --secondary-color: #1f1f1f; /* 30% of the usage */
+  --tertiary-color: #2f2f2f;  /* 10% of the usage */
   --accent-color: #f57e5a;     /* 10% of the usage */
 
   --text-color : #f5f5f5;
@@ -446,8 +448,14 @@ color: red;
   border-radius: 50px;
 }
 
+.card .link:hover{
+  color: var(--accent-color);
+}
+
+
+
 .card:hover{
-  background-color: var(--accent-color);
+  background-color: var(--tertiary-color);
 }
 
 .icon-button button{
