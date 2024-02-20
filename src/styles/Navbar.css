@@ -238,5 +238,6 @@
 .profile-dropdown-chevron-btn :hover{
   cursor: pointer;
   scale: 1.05;
+  color: var(--accent-color);
 }
 

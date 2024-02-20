@@ -170,37 +170,6 @@ button.danger{
   background-color: var(--soft-gray); 
 }
 
-.icon-button{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-   padding: 11px;
-
-   transition: all 0.25s ease;
-}
-
-.icon-button.secondary{
-  background-color: var(--soft-gray);
-}
-.icon-button.secondary:hover{
-  background-color: var(--soft-gray-hover);
-}
-
-.icon-button.danger{
-  background-color: red;
-}
-
-.icon-button-link{
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.icon-button-link:hover{
-  color: var(--accent-color);
-  scale: 1.1;
-}
-
 input {
   width: 100%;
   height: 40px;
@@ -338,6 +307,8 @@ input:disabled {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .page-layout{
@@ -348,9 +319,14 @@ input:disabled {
 
 .page-content{
   background-color: var(--secondary-background);
-  border-top-left-radius: 20px;
-  width: 100%;
+  width: 80%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-top: 80px;
 }
 
 .modal-content{
@@ -465,3 +441,48 @@ color: red;
   font-weight: 500;
   color: var(--soft-gray-text);
 }
+
+.card{
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+}
+
+.card:hover{
+  background-color: var(--accent-color);
+}
+
+.icon-button button{
+  background-color: var(--secondary-color) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 4rem; 
+  height: 4rem; 
+}
+
+.icon-button button:hover{
+  background-color: var(--accent-color) !important;
+}
+
+.icon-button-secondary button {
+  background-color: var(--secondary-semi-transparent) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 4rem;
+  height: 4rem; 
+}
+
+
+

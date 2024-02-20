@@ -9,6 +9,10 @@ function ProtoTypeNavbar() {
 
     const auth = useAuth();
 
+    useEffect(() => {
+      console.log("navbar loaded");
+    } , []);
+
     //method to get offline mode and set it to the state
     useEffect(() => {
       setOfflineMode(auth.offlineMode ?? false);

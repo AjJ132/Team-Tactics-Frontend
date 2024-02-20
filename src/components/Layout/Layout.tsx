@@ -7,10 +7,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="page-container">
                 {/* <TopNavbar /> */}
                 <ProtoTypeNavbar />
-                <div className="page-layout">
-                    {/* <SideNavbar /> */}
-                    <div className="page-content">{children}</div> {/* This is where the page content will be rendered */}
-                </div>
+                
+                {/* <SideNavbar /> */}
+                <div className="page-content">{children}</div> {/* This is where the page content will be rendered */}
+                
             </div>
         );
     }

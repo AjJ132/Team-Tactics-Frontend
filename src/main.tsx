@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, Route, RouterProvider } from 'react-router-dom'
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom'
 import './index.css'
 import Dashboard from './pages/Dashboard/Dashboard'
 import SignIn from './pages/SigninSignup/Signin'
@@ -19,15 +19,18 @@ import "./index.css";
 import { UserContext } from './contexts/UserContext'
 import { User } from './Interfaces/User'
 import CalendarProvider from './providers/CalendarProvider'
+import CalendarPage from './pages/Calendar/CalendarPage'
+import MessagesPage from './pages/Messages/MessagesPage'
+import FilesPage from './pages/files/FilesPage'
 
 
-// ------------------------------------------
-
+// ------------OLD CODE. Keeping for awhile just in case :) AJ. (Removing this so the navbar doesnt re render on every page change)
+/*
 const router = createBrowserRouter([
   {
     path: '/',
     element: 
-      <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
+      <ProtectedRoute> 
         <Layout>
           <Dashboard />
         </Layout>
@@ -36,15 +39,48 @@ const router = createBrowserRouter([
   {
     path: '/signin',
     element: <SignIn />,
-  }
-])
+  },
+  {
+    path: '/Calendar',
+    element: 
+      <ProtectedRoute>
+        <Layout>
+          <CalendarPage />
+        </Layout>
+      </ProtectedRoute>,
+  },
+  {
+    path: '/messages',
+    element: 
+      <ProtectedRoute>
+        <Layout>
+          <MessagesPage />
+        </Layout>
+      </ProtectedRoute>,
+  },
+]) */
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <CalendarProvider>
-        <RouterProvider router={router} />
-      </CalendarProvider>
-    </AuthProvider>
-  </React.StrictMode>,
-)
+// Adjust your router configuration to include a single layout that wraps around your routes
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <AuthProvider>
+        <CalendarProvider>
+          <BrowserRouter>
+            <Layout> {/* Layout is now outside and wraps around the routes */}
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/signinSignup" element={<SignIn />} /> {/* Updated path to "/signinSignup" */}
+                <Route path="/calendar" element={<CalendarPage />} />
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path='/files' element={<FilesPage />} />
+                {/* Define other routes here */}
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </CalendarProvider>
+      </AuthProvider>
+    </React.StrictMode>,
+  );
+}
