@@ -1,0 +1,50 @@
+.date-change-button{
+    display:  flex;
+    box-sizing: border-box;
+}
+
+.date-change-button button{
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    border: 1px solid var(--tertiary-color-translucent-3);
+    
+    min-width: 60px;
+    max-width: 60px;
+    min-height: 42px;
+    max-height: 42px;
+}
+
+.date-change-button svg{
+    color: var(--secondary-text-color);
+}
+
+.date-change-button button:hover{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.no-border-radius{
+    border-radius: 0 !important;
+}
+
+.date-change-button button:first-child {
+    
+    margin-right: 20px;
+    border-radius: 6px !important; /* Adjust the radius as needed */
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.date-change-button button:nth-child(2) {
+    border-radius: 6px 0 0 6px !important; /* Adjust the radius as needed */
+    
+}
+
+.date-change-button button:nth-child(3) {
+    border-radius: 0 !important;
+    
+}
+
+.date-change-button button:last-child {
+    border-radius: 0 6px 6px 0 !important; /* Adjust the radius as needed */
+}
