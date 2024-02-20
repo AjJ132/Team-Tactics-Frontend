@@ -19,6 +19,7 @@ import "./index.css";
 import { UserContext } from './contexts/UserContext'
 import { User } from './Interfaces/User'
 import CalendarProvider from './providers/CalendarProvider'
+import CalendarPage from './pages/Calendar/CalendarPage'
 
 
 // ------------------------------------------
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: 
-      <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
+      <ProtectedRoute>
         <Layout>
           <Dashboard />
         </Layout>
@@ -36,7 +37,16 @@ const router = createBrowserRouter([
   {
     path: '/signin',
     element: <SignIn />,
-  }
+  },
+  {
+    path: '/calendar',
+    element: 
+      <ProtectedRoute> 
+        <Layout>
+          <CalendarPage />
+        </Layout>
+      </ProtectedRoute>,
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

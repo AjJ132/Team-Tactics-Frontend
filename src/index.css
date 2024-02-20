@@ -52,7 +52,6 @@ p{
 
 svg {
   color:  var(--text-color);
-
 }
 
 a{
@@ -464,4 +463,9 @@ color: red;
   font-size: 14px;
   font-weight: 500;
   color: var(--soft-gray-text);
+}
+
+.card{
+  background-color: var(--secondary-color);
+  border-radius: 50px;
 }
