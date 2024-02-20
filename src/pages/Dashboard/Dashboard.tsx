@@ -12,8 +12,8 @@ function Dashboard() {
   })} ${today.getDate()}, ${today.getFullYear()}`;
 
   return (
-    <div className="Dashboard-body">
-    <div className="dashboard-components-container">
+    <div className="dashboard-body">
+    
       <h1>
         Good {today.getHours() < 12 ? "Morning" : today.getHours() < 18 ? "Afternoon" : "Evening"}, {auth.user?.firstName}!
       </h1>
@@ -44,7 +44,7 @@ function Dashboard() {
           <p>No messages</p>
         </div>
       </div> */}
-    </div>
+    
   </div>
   );
 }

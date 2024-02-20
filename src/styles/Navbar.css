@@ -1,24 +1,25 @@
 /* Navbar styles */
 
 .top-navbar {
-  width: 100%;
-  height: 50px;
-  background-color: var(--primary-color);
-  padding: 12px 30px;
-
-  display: flex;
+  display: grid;
+  grid-template-columns: 300px 1fr 300px; /* Adjust the fixed sizes as needed */
   justify-content: space-between;
   align-items: center;
-
+  gap: 10px; /* Adjust gap between items if needed */
+  width: 100%;
+  height: fit-content;
+  background-color: var(--primary-background);
+  padding: 22px 30px; /* Combined padding-top with padding-left/right */
   color: var(--secondary-color);
 }
+
 
 .side-nav {
   
   width: 18vw;
   height: 100%;
   overflow-x: hidden;
-  background-color: var(--primary-color);
+  background-color: var(--primary-background);
 
   display: flex;
   flex-direction: column;
@@ -104,6 +105,10 @@
   
 }
 
+.side-nav-buttons a{
+  width: 100%;
+}
+
 .side-nav-buttons .selected{
   background-color: var(--secondary-transparent);
 }
@@ -117,3 +122,121 @@
 .side-nav-buttons button:hover{
   background-color: var(--secondary-transparent);
 }
+
+
+
+
+
+.proto-navbar-links{
+  width: fit-content;
+  height: 70px;
+  max-height: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+
+  position: relative;
+
+}
+
+.slider-indicator {
+  position: absolute;
+  height: 100%;
+  width: calc(25% - 20px); /* Assuming you have 4 buttons with equal width, and 10px gap on each side */
+  background-color: rgba(255, 255, 255, 0.01); /* Your indicator color */
+  z-index: 1000;
+  border: 1px solid var(--secondary-text-color); /* Your border color */
+  border-radius: 50px;
+  transition: left 0.15s ease-in-out; /* This creates the sliding effect */
+}
+
+
+.proto-navbar-links button{
+  position: relative; /* Add this line */
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 100%;
+  padding: 1.2rem 1.5rem;
+  border-radius: 50px;
+
+  flex-grow: 1;
+  overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+  position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+}
+
+.navbar-links-active::before {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50px;
+  display: block; /* Changed to block for positioning */
+  position: absolute; /* Add this line */
+  left: 10px; /* Adjust as needed */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+  margin-right: 5px;
+}
+
+.proto-navbar-links button p {
+  color: var(--secondary-text-color);
+}
+
+.proto-navbar-links button p strong {
+  color: var(--text-color);
+}
+
+.navbar-profile-section{
+  width: fit-content;
+  height: 70px;
+  max-height: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+
+  position: relative;
+}
+
+
+.navbar-profile-section button{
+  position: relative; /* Add this line */
+  background-color: var(--secondary-color);
+  width: fit-content;
+  padding-right: 10px;
+  height: 100%;
+  border-radius: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-grow: 1;
+  overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+  position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+}
+
+
+.navbar-profile-section p{
+  line-height: 1;
+}
+
+.navbar-profile-section img{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.profile-dropdown-chevron-btn :hover{
+  cursor: pointer;
+  scale: 1.05;
+}
+
