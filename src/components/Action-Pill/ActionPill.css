@@ -1,0 +1,46 @@
+.action-pill-container{
+    width: fit-content;
+    height: 40px;
+    max-height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+
+    position: relative;
+    transition: all 0.25s;
+}
+
+.action-pill-container button:hover{
+    background-color: var(--tertiary-color);
+    scale: 1.03;
+}
+
+.action-pill-container button{
+    position: relative; /* Add this line */
+    background-color: var(--secondary-color);
+    width: fit-content;
+    height: 100%;
+    border-radius: 50px;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  
+   
+  }
+  
+  
+  .action-pill-container p{
+    line-height: 1;
+  }
+  
+  .action-btn :hover{
+    cursor: pointer;
+    scale: 1.05;
+    color: var(--accent-color);
+  }
+  

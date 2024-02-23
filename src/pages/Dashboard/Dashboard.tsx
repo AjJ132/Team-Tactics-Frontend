@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faEnvelope, faGear, faGears, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faEnvelope, faRss, faGears, faXmark } from "@fortawesome/free-solid-svg-icons";
 import UserProfilePill from "../../components/UserProfilePill/UserProfilePill";
 import CalendarEventPill from "../../components/CalendarEventPill/CalendarEventPill";
+import ActionPill from "../../components/Action-Pill/ActionPill";
+import WelcomeSign from "../../components/dashboard/Welcome Sign/WelcomeSign";
+import MessageInfoCard from "../../components/dashboard/InfoCards/MessageInfoCard";
+import FeedInfoCard from "../../components/dashboard/InfoCards/FeedInfoCard";
+import CalendarInfoPill from "../../components/dashboard/InfoCards/CalendarInfoPill";
 
 function Dashboard() {
   const auth = useAuth();
@@ -19,56 +24,21 @@ function Dashboard() {
    
     
       <div className="flex flex-col w-full h-full gap-14">
-        <div className="w-full h-fit flex justify-center items-center">
-          <h1>
-            Good {today.getHours() < 12 ? "Morning" : today.getHours() < 18 ? "Afternoon" : "Evening"}, {auth.user?.firstName}!
-          </h1>
-          <div className="flex flex-row gap-16 ml-auto">
-            <div className="flex flex-row gap-4">
-              <div className="card p-20 cursor-pointer">
-                <FontAwesomeIcon className="scale-150" icon={faEnvelope} size="2xl"/>
-              </div>
-              <div className="flex flex-col">
-                <h2>Messages</h2>
-                <p><strong style={{color: 'var(--accent-color)'}}>3</strong> new messages</p>
-                <div className="mt-auto">
-                  <UserProfilePill name='Coach Mike' role="Coach" />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row gap-4">
-              <div className="card p-20 cursor-pointer">
-                <FontAwesomeIcon className="scale-150" icon={faCalendarDays} size="2xl"/>
-              </div>
-              <div className="flex flex-col">
-                <h2>Events</h2>
-                <p><strong style={{color: 'var(--accent-color)'}}>1</strong> upcoming events</p>
-                <div className="mt-auto">
-                  <CalendarEventPill eventName="Yoga Class" eventType="Exercise" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-4 ml-8">
-              <div className="icon-button">
-                <button className="p-12">
-                  <FontAwesomeIcon icon={faGears} size="2xl" />
-                </button>
-              </div>
-              <div className="icon-button">
-                <button className="p-12">
-                  <FontAwesomeIcon icon={faXmark} size="2xl" />
-                </button>
-              </div>
-            </div>
-        </div>
-        <div>
+       <WelcomeSign today={today} firstName={auth.user?.firstName || ""} />
+        <div className="flex flex-col gap-8">
           <div className="card w-full p-4">
             <div className="icon-button-secondary">
               <button>
                 <FontAwesomeIcon icon={faCalendarDays} size="xl" />
               </button>
             </div>
+          </div>
+          <div className="flex flex-row gap- justify-around">
+            <div className="flex flex-row justify-center gap-4 w-full">
+              <CalendarInfoPill />
+              <MessageInfoCard title="Messages" newMessagesCount={3} name="John Doe" role="Admin" />
+            </div>
+            <FeedInfoCard title="Feed" />
           </div>
         </div>
       </div>

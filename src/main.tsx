@@ -22,6 +22,7 @@ import CalendarProvider from './providers/CalendarProvider'
 import CalendarPage from './pages/Calendar/CalendarPage'
 import MessagesPage from './pages/Messages/MessagesPage'
 import FilesPage from './pages/files/FilesPage'
+import Signup from './pages/SigninSignup/Signup'
 
 
 // ------------OLD CODE. Keeping for awhile just in case :) AJ. (Removing this so the navbar doesnt re render on every page change)
@@ -67,18 +68,21 @@ if (rootElement) {
     <React.StrictMode>
       <AuthProvider>
         <CalendarProvider>
-          <BrowserRouter>
-            <Layout> {/* Layout is now outside and wraps around the routes */}
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/signinSignup" element={<SignIn />} /> {/* Updated path to "/signinSignup" */}
-                <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/messages" element={<MessagesPage />} />
-                <Route path='/files' element={<FilesPage />} />
-                {/* Define other routes here */}
-              </Routes>
-            </Layout>
-          </BrowserRouter>
+          
+            <BrowserRouter>
+              <Layout> {/* Layout is now outside and wraps around the routes */}
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/signin" element={<SignIn />} />
+                  <Route path="/signup" element={<Signup />} /> 
+                  <Route path="/calendar" element={<CalendarPage />} />
+                  <Route path="/messages" element={<MessagesPage />} />
+                  <Route path='/files' element={<FilesPage />} />
+                  {/* Define other routes here */}
+                </Routes>
+              </Layout>
+            </BrowserRouter>
+          
         </CalendarProvider>
       </AuthProvider>
     </React.StrictMode>,

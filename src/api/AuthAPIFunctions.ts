@@ -24,10 +24,37 @@ export const UserSignin = async (email: string, password: string): Promise<User 
         const data = await response.json();
         return data as User;
     } catch (error) {
-        console.error("Error in UserSignin: ", (error as Error).message);
+        console.error("Error in User Signin: ", (error as Error).message);
         return null; // Return null in case of error
     }
 };
+
+export const UserSignup = async (email: string, password: string, firstName: string, lastName: string, role: string): Promise<User | null> => {
+    const apiUrl = "http://localhost:7071";
+    
+    try {
+        const response = await fetch(`${apiUrl}/auth/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({email, password, firstName, lastName, role}),
+        });
+
+        if (!response.ok) {
+            // Throw an error with the status code for non-2xx responses
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data as User;
+    } catch (error) {
+        console.error("Error in User Signup: ", (error as Error).message);
+        return null; // Return null in case of error
+    }
+};
+
 
 
 //used to verify if the user is signed in and cookie has not expired. returns true if user is signed in, false if not.
@@ -44,6 +71,7 @@ export const CheckAuthentication = async (): Promise<{isAuthenticated: boolean, 
         });
 
         if (response.ok) {
+            console.log("User is authenticated");
             const data = await response.json();
             return { isAuthenticated: true, user: data as User };
         } else {

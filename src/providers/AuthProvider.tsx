@@ -36,10 +36,12 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
         firstName: "John",
         lastName: "Doe",
         email: "johdoe123@gmail.com",
+        role: "Admin"
     });
 
     //on login success, set the user and isAuthenticated to true
     const loginSuccess = (loggedInUser: User) => {
+        toggleOfflineMode(false);
         setUser(loggedInUser);
         setIsAuthenticated(true);
       };
@@ -65,6 +67,7 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
 
             //if offline mode is true, set the user to the offline user. This is to help with maintaining offline mode when the page refreshes/reloads
             if(offlineMode === 'true'){
+                console.log('offline mode')
                 setOfflineMode(true);
                 setUser(offlineUser);
                 setIsAuthenticated(true);
@@ -73,6 +76,7 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
             } else //else update the state to false
             {
                 setOfflineMode(false);
+                console.log('online mode')
 
                 //update the local storage
                 localStorage.setItem('offlineMode', 'false');
@@ -100,6 +104,9 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
                 } else {
                     setUser(null);
                     setIsAuthenticated(false);
+
+                    //navgiate to signin
+                    window.location.href = '/signin';
                 }
             } catch (error) {
                 console.error("Authentication check failed", error);

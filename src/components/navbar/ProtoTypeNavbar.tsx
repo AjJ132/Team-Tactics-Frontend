@@ -26,7 +26,7 @@ function ProtoTypeNavbar() {
     <div className="top-navbar">
         <h3 className="font-bold">TeamTactics</h3>
         <NavbarLinksProto />
-        <NavbarProfileSection />
+        <NavbarProfileSection firstName={auth.user?.firstName} lastName={auth.user?.lastName} role={auth.user?.role} profileIconUrl="_"/>
     </div>
   );
 }

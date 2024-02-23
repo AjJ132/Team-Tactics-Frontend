@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { useAuth } from '../../providers/AuthProvider'
 
 const UserSigninPage = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const auth = useAuth();
@@ -16,12 +16,13 @@ const UserSigninPage = () => {
 
     const handlesignin = async () => {
       try {
-          const response = await UserSignin(username, password);
+          const response = await UserSignin(email, password);
   
           if (response) {
               // If the response is not null, then the user is signed in
               //set the user object in the context and set isAuthenticated to true
               auth.loginSuccess(response);
+
               navigate('/');
           } else {
               // Handle sign-in failure without throwing an error, as error is logged in UserSignin
@@ -44,18 +45,18 @@ const UserSigninPage = () => {
 
     return (
         <div className='signin-page'>
-            <div className="modal-content">
+            <div className="modal-content p-8">
                 <div className="flex flex-row items-center justify-start gap-2 w-full pb-8">
                     <img src={logo} alt="logo" width={75}/>
                     <h1>Team Tactics</h1>
                 </div>
 
                 <div className="flex flex-row content-center justify-start gap-2 w-full pt-8">
-                    <h2>User Sign In</h2>
+                    <h2>Sign In</h2>
                 </div>  
                 <div className="flex flex-col content-center justify-start gap-0 w-full pt-8">
-                    <p>Username<strong>*</strong></p>
-                    <input type="text" placeholder="Username" className="modal-content-input" onChange={(e) => setUsername(e.target.value)}/>
+                    <p>Email<strong>*</strong></p>
+                    <input type="text" placeholder="Email" className="modal-content-input" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="flex flex-col content-center justify-start gap-0 w-full pt-6">
                     <p>Password<strong>*</strong></p>
@@ -71,12 +72,12 @@ const UserSigninPage = () => {
                 </div>
 
                 <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
-                    <p>Don't have an account? <a href="/user-registration">Sign Up</a></p>
+                    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
                 </div>
 
                 <div className="flex flex-row content-center justify-center gap-2 w-full pt-14">
-                    <p>DEV__OFFLINE MODE</p>
-                    <button onClick={handleOfflineMode}>Offline Mode</button>
+                    <p>DEV__OFFLINE_MODE</p>
+                    <button onClick={handleOfflineMode}>Offline</button>
                 </div>
 
             </div>
