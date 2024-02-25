@@ -1,5 +1,6 @@
 import {useQuery} from 'react-query';
 import { User } from '../Interfaces/User';
+import { useAuth } from '../providers/AuthProvider';
 
 
 //used to sign in the user. returns the user object if successful, else returns null.
@@ -55,8 +56,6 @@ export const UserSignup = async (email: string, password: string, firstName: str
     }
 };
 
-
-
 //used to verify if the user is signed in and cookie has not expired. returns true if user is signed in, false if not.
 export const CheckAuthentication = async (): Promise<{isAuthenticated: boolean, user: User} | null> => {
     try {
@@ -82,5 +81,30 @@ export const CheckAuthentication = async (): Promise<{isAuthenticated: boolean, 
     } catch (error) {
         console.error("Failed: Error checking authentication", error);
         return null;
+    }
+}
+
+export const UserSignout = async (): Promise<boolean> => {
+    try {
+        // const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
+        const apiUrl = "http://localhost:7071";
+        const response = await fetch(`${apiUrl}/auth/signout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+
+        if (response.ok) {
+            console.log("User has signed out");
+            return true;
+        } else {
+            console.error("Error signing out", response);
+            return false;
+        }
+    } catch (error) {
+        console.error("Failed: Error signing out", error);
+        return false;
     }
 }

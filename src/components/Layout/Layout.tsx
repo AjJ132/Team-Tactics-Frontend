@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProtoTypeNavbar from "../navbar/ProtoTypeNavbar";
+import Navbar from "../navbar/Navbar";
 import { useLocation } from "react-router-dom";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -26,7 +26,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="page-container">
                 {showNavbar ? (
                 <>
-                    <ProtoTypeNavbar />
+                    <Navbar />
                     <div className="page-content">{children}</div>
                 </>
                 ) : (

@@ -10,6 +10,7 @@ type AuthProviderProps = PropsWithChildren & {
     isLoading?: boolean;
     loginSuccess: (loggedInUser: User) => void;
     toggleOfflineMode: (toggleOfflineMode: boolean) => void;
+    logout: () => void;
     offlineMode?: boolean;
 };
 
@@ -19,6 +20,7 @@ const AuthContext = createContext<AuthProviderProps>({
     isLoading: true, 
     loginSuccess: () => {},
     toggleOfflineMode: () => {},
+    logout: () => {},
     offlineMode: false,
 });
 
@@ -46,7 +48,15 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
         setIsAuthenticated(true);
       };
 
-      //Method to swap in and out of offline mode
+      const logout = () => {
+        setUser(null);
+        setIsAuthenticated(false);
+
+        //redirect to signin page
+        window.location.href = '/signin';
+      };
+
+    //Method to swap in and out of offline mode
     const toggleOfflineMode = (value: boolean) => {
         console.log('offline mode', value);
         setOfflineMode(value);
@@ -124,7 +134,7 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     }
 
     return (
-                <AuthContext.Provider value={{ user, isAuthenticated, isLoading, loginSuccess, toggleOfflineMode: toggleOfflineMode, offlineMode }}>
+                <AuthContext.Provider value={{ user, isAuthenticated, isLoading, loginSuccess, toggleOfflineMode: toggleOfflineMode, logout, offlineMode }}>
                     {children}
                 </AuthContext.Provider>
 

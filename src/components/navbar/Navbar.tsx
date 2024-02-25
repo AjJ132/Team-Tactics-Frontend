@@ -3,7 +3,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import NavbarLinksProto from "./NavbarLinksProto";
 import NavbarProfileSection from "./NavbarProfileSection";
 
-function ProtoTypeNavbar() {
+function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [offlineMode, setOfflineMode] = useState(false);
 
@@ -31,4 +31,4 @@ function ProtoTypeNavbar() {
   );
 }
 
-export default ProtoTypeNavbar;
+export default Navbar;
