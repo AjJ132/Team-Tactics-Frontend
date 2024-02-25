@@ -6,6 +6,12 @@ export interface User {
     role: string;
 }
 
+export interface User_DTO{
+    firstName?: string;
+    lastName?: string;
+    id?: string;
+}
+
 export interface SigninModel {
     email: string;
     password: string;

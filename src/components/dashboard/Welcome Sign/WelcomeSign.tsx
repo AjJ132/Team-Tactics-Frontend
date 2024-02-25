@@ -4,7 +4,7 @@ import ActionPill from '../../Action-Pill/ActionPill';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faEnvelope, faGear } from '@fortawesome/free-solid-svg-icons';
 import RotatingGear from './RotatingGear';
-import { NewEvent } from '../../../Interfaces/NewEvent';
+import { NewEvent } from '../../../Interfaces/Events';
 
 // WelcomeSignProps.ts
 export interface WelcomeSignProps {

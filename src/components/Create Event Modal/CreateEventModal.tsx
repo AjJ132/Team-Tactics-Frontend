@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { NewEvent } from '../../Interfaces/NewEvent';
+import React, { useEffect, useState } from 'react';
+import { NewEvent } from '../../Interfaces/Events';
 import ModalBody from '../Modal Body/ModalBody';
+import { useCalendar } from '../../providers/CalendarProvider';
 
 type CreateEventModalProps = {
     isOpen: boolean;
@@ -8,23 +9,35 @@ type CreateEventModalProps = {
 };
 
 const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) => {
-    const [newEvent, setNewEvent] = useState<NewEvent>({
-        title: "",
-        description: "",
-        startDate: new Date(),
-        endDate: new Date(new Date().getTime() + 60 * 60 * 1000),
-        color: "#f57e5a",
-        UserIds: []
-    });
 
+    const calendar = useCalendar();
+    
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [startDate, setStartDate] = useState<Date>(new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
-    
-    const [endDate, setEndDate] = useState<Date>(new Date(new Date().getTime() + 2 * 60 * 60 * 1000));
+    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [endDate, setEndDate] = useState<Date>(new Date());
+
+    const startDateStr = startDate.toISOString().slice(0, 16);
+    const endDateStr = endDate.toISOString().slice(0, 16);
     
     const [color, setColor] = useState<string>("#f57e5a");
+    const [assignMe, setAssignMe] = useState<boolean>(true);
     const [UserIds, setUserIds] = useState<string[]>([]);
+
+    useEffect(() => {
+        const now = new Date();
+        if (now.getMinutes() !== 0) {
+            now.setHours(now.getHours() + 1);
+        }
+        now.setMinutes(0);
+        now.setSeconds(0);
+    
+        const endDate = new Date(now.getTime());
+        endDate.setHours(endDate.getHours() + 3);
+    
+        setStartDate(now);
+        setEndDate(endDate);
+    }, []);
     
 
     //if the modal is not open, return null
@@ -36,8 +49,20 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) 
         onClose();
     }
 
-    const handleOnActionSuccessful = (newEvent: Event) => {
+    const handleOnActionSuccessful = async () => {
         //create the new event and then close the modal
+        const newEvent: NewEvent = {
+            title,
+            description,
+            startDate,
+            endDate,
+            color,
+            assignMe,
+            UserIds
+        };
+
+        //send the new event to the server
+        await calendar.createNewEvent(newEvent);
     }
 
     return (
@@ -46,19 +71,19 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) 
         <div className='flex flex-col items-start content-start gap-4'>
             <div className="flex flex-col content-center justify-start gap-0 w-full ">
                 <p>Title<strong>*</strong></p>
-                <input type="text" placeholder="Title"  maxLength={30}/>
+                <input type="text" placeholder="Title" maxLength={30} onChange={(e) => setTitle(e.target.value)} />
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>Description</p>
-                <textarea placeholder="Description" className='sm'  maxLength={100}/>
+                <textarea placeholder="Description" className='sm' maxLength={100} onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>Start Date</p>
-                <input type="datetime-local" value={startDate.toISOString().slice(0, -8)} onChange={(e) => setStartDate(new Date(e.target.value))} />
+                <input type="datetime-local" value={startDateStr} onChange={(e) => setStartDate(new Date(e.target.value))} />
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>End Date</p>
-                <input type="datetime-local" value={endDate.toISOString().slice(0, -8)} onChange={(e) => setEndDate(new Date(e.target.value))} />
+                <input type="datetime-local" value={endDateStr} onChange={(e) => setEndDate(new Date(e.target.value))} />
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>Color</p>
@@ -68,7 +93,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) 
             <div className="flex flex-row gap-2 content-center justify-start w-full pt-8">
                 <div className="flex flex-col content-center justify-start gap-0 w-full ">
                     <p>Assign Me</p>
-                    <input type="checkbox" value="true" disabled={true}/>   {/*disabling for now */}
+                    <input type="checkbox" checked={assignMe} onChange={(e) => setAssignMe(e.target.checked)}/>   {/*disabling for now */}
                 </div>
                 <div className="flex flex-col content-center justify-start gap-0 w-full ">
                     <p>Athletes<strong>*</strong></p>
