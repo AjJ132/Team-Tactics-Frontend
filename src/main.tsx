@@ -26,11 +26,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: 
-      <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
         <Layout>
           <Dashboard />
         </Layout>
-      </ProtectedRoute>,
+  
+
+      // <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
+      //   <Layout>
+      //     <Dashboard />
+      //   </Layout>
+      // </ProtectedRoute>,
   },
   {
     path: '/signin',

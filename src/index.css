@@ -18,9 +18,9 @@
   max-height: 100vh;
   overflow: hidden;
 
-  --primary-color: #101010;   /* 60% of the usage */
+  --primary-color: #1e2830;   /* 60% of the usage */
   --secondary-color: #ffffff; /* 30% of the usage */
-  --accent-color: #ff8c00;     /* 10% of the usage */
+  --accent-color: #2f783a;     /* 10% of the usage */
 
   --secondary-semi-transparent: rgba(255, 255, 255, 0.40);
   --secondary-transparent: rgba(255, 255, 255, 0.20);
@@ -333,6 +333,7 @@ input:disabled {
   border-top-left-radius: 20px;
   width: 100%;
   height: 100%;
+  padding: 2em;
 }
 
 .modal-content{
