@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faCalendar, faEnvelope, faCog, faXmark, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faCalendar, faEnvelope, faCog, faXmark, faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 function SideNavbar() {
@@ -41,6 +41,10 @@ function SideNavbar() {
             <button className={selected === 'envelope' ? 'selected' : ''}>
               <FontAwesomeIcon icon={faEnvelope} />
               {isOpen && <p>Messages</p>}
+            </button>
+            <button className={selected === 'envelope' ? 'selected' : ''}>
+            <FontAwesomeIcon icon={faUser} />
+              {isOpen && <p>Team Creation</p>}
             </button>
             <button className={`mt-auto ${selected === 'cog' ? 'selected' : ''}`}>
               <FontAwesomeIcon icon={faCog} />

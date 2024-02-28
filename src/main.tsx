@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, Route, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Dashboard from './pages/Dashboard/Dashboard'
+import TeamCreation from './pages/TeamCreation/TeamCreation'
 import SignIn from './pages/SigninSignup/Signin'
 import AuthProvider from './providers/AuthProvider'
 import ProtectedRoute from './components/Protected Route/ProtectedRoute'
@@ -36,6 +37,13 @@ const router = createBrowserRouter([
       //     <Dashboard />
       //   </Layout>
       // </ProtectedRoute>,
+  },
+  {
+    path: '/teamcreation',
+    element: 
+    <Layout>
+    <TeamCreation />
+    </Layout>
   },
   {
     path: '/signin',
