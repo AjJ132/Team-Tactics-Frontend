@@ -179,9 +179,6 @@ input {
   transition: all 0.25s ease;
 }
 
-input:hover {
-  border-color: transparent;
-}
 
 textarea {
   width: 100%;
@@ -277,7 +274,7 @@ input[type="time"]{
 }
 
 input[type="time"]:hover {
-  border-color: transparent;
+  border-color: var(--soft-border);
 }
 
 input[type="time"]:focus {

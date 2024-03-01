@@ -2,49 +2,67 @@ import React, { useEffect, useState } from 'react';
 import { NewEvent } from '../../Interfaces/Events';
 import ModalBody from '../Modal Body/ModalBody';
 import { useCalendar } from '../../providers/CalendarProvider';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 type CreateEventModalProps = {
     onClose: (event?: NewEvent) => void;
+    initialStartDate?: Date;
 };
 
-const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose }) => {
-
+const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, initialStartDate }) => {
     const calendar = useCalendar();
     
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [startDate, setStartDate] = useState<Date>(initialStartDate || new Date());
     const [endDate, setEndDate] = useState<Date>(new Date());
-
-    const startDateStr = startDate.toISOString().slice(0, 16);
-    const endDateStr = endDate.toISOString().slice(0, 16);
     
     const [color, setColor] = useState<string>("#f57e5a");
     const [assignMe, setAssignMe] = useState<boolean>(true);
     const [UserIds, setUserIds] = useState<string[]>([]);
 
+    // useEffect(() => {
+    //     const today = new Date();
+    //     const nextHour = new Date(today);
+    //     nextHour.setHours(nextHour.getHours() + 1);
+    //     const twoHoursLater = new Date(nextHour);
+    //     twoHoursLater.setHours(twoHoursLater.getHours() + 1);
+
+    //     const formatDate = (date: Date) => {
+    //         const year = date.getFullYear();
+    //         const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    //         const day = date.getDate().toString().padStart(2, '0');
+    //         return `${year}-${month}-${day}`;
+    //     };
+    //     const formatTime = (date: Date) => {
+    //         const hours = date.getHours().toString().padStart(2, '0');
+    //         const minutes = date.getMinutes().toString().padStart(2, '0');
+    //         return `${hours}:${minutes}`;
+    //     };
+
+    //     setStartDate(formatDate(today) + 'T' + formatTime(nextHour));
+    //     setEndDate(formatDate(today) + 'T' + formatTime(twoHoursLater));
+    // }, []);
+
     useEffect(() => {
-        const now = new Date();
-        if (now.getMinutes() !== 0) {
-            now.setHours(now.getHours() + 1);
-        }
-        now.setMinutes(0);
-        now.setSeconds(0);
-    
-        const endDate = new Date(now.getTime());
-        endDate.setHours(endDate.getHours() + 3);
-    
-        setStartDate(now);
-        setEndDate(endDate);
-    }, []);
-    
+        const today = initialStartDate || new Date();
+        const nextHour = new Date(today);
+        nextHour.setMinutes(0, 0, 0); // Reset minutes, seconds, and milliseconds
+        nextHour.setHours(nextHour.getHours() + 1);
+        const twoHoursLater = new Date(nextHour);
+        twoHoursLater.setHours(twoHoursLater.getHours() + 1);
+
+        setStartDate(nextHour);
+        setEndDate(twoHoursLater);
+    }, [initialStartDate]);
 
     const handleCancel = () => {
         onClose();
     }
 
     const handleOnActionSuccessful = async () => {
-        //create the new event and then close the modal
+       
         const newEvent: NewEvent = {
             title,
             description,
@@ -52,17 +70,18 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose }) => {
             endDate,
             color,
             assignMe,
-            UserIds
+            UserIds,
         };
 
-        //send the new event to the server
-        const success = await calendar.createNewEvent(newEvent);
+        console.log(newEvent);
+
+        const success = calendar.createNewEvent(newEvent);
         if (success !== undefined && success !== null && success == true) {
             onClose(newEvent);
         } else {
             alert("Failed to create event");
         }
-    }
+    };
 
     return (
         // Add your JSX code here
@@ -78,11 +97,29 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose }) => {
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>Start Date</p>
-                <input type="datetime-local" value={startDateStr} onChange={(e) => setStartDate(new Date(e.target.value))} />
+                <div className="flex flex-row">
+                    <DatePicker 
+                        selected={startDate} 
+                        onChange={(date) => date && setStartDate(date)} 
+                        showTimeSelect
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="MMM d, h:mm aa"
+                    />
+                </div>
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>End Date</p>
-                <input type="datetime-local" value={endDateStr} onChange={(e) => setEndDate(new Date(e.target.value))} />
+                <div className="flex flex-row">
+                    <DatePicker 
+                        selected={endDate} 
+                        onChange={(date) => date && setEndDate(date)} 
+                        showTimeSelect
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="MMM d, h:mm aa"
+                    />
+                </div>
             </div>
             <div className="flex flex-col content-center justify-start gap-0 w-full">
                 <p>Color</p>
