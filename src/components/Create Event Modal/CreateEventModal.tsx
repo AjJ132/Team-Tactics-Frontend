@@ -22,29 +22,6 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, initialSta
     const [assignMe, setAssignMe] = useState<boolean>(true);
     const [UserIds, setUserIds] = useState<string[]>([]);
 
-    // useEffect(() => {
-    //     const today = new Date();
-    //     const nextHour = new Date(today);
-    //     nextHour.setHours(nextHour.getHours() + 1);
-    //     const twoHoursLater = new Date(nextHour);
-    //     twoHoursLater.setHours(twoHoursLater.getHours() + 1);
-
-    //     const formatDate = (date: Date) => {
-    //         const year = date.getFullYear();
-    //         const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    //         const day = date.getDate().toString().padStart(2, '0');
-    //         return `${year}-${month}-${day}`;
-    //     };
-    //     const formatTime = (date: Date) => {
-    //         const hours = date.getHours().toString().padStart(2, '0');
-    //         const minutes = date.getMinutes().toString().padStart(2, '0');
-    //         return `${hours}:${minutes}`;
-    //     };
-
-    //     setStartDate(formatDate(today) + 'T' + formatTime(nextHour));
-    //     setEndDate(formatDate(today) + 'T' + formatTime(twoHoursLater));
-    // }, []);
-
     useEffect(() => {
         const today = initialStartDate || new Date();
         const nextHour = new Date(today);
@@ -75,7 +52,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, initialSta
 
         console.log(newEvent);
 
-        const success = calendar.createNewEvent(newEvent);
+        const success = await calendar.createNewEvent(newEvent);
         if (success !== undefined && success !== null && success == true) {
             onClose(newEvent);
         } else {
