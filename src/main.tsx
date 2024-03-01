@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom'
 import './index.css'
 import Dashboard from './pages/Dashboard/Dashboard'
+import TeamCreation from './pages/TeamCreation/TeamCreation'
 import SignIn from './pages/SigninSignup/Signin'
 import AuthProvider from './providers/AuthProvider'
 import ProtectedRoute from './components/Protected Route/ProtectedRoute'
@@ -36,7 +37,20 @@ const router = createBrowserRouter([
         <Layout>
           <Dashboard />
         </Layout>
-      </ProtectedRoute>,
+  
+
+      // <ProtectedRoute> {/* 👈 This is the ProtectedRoute component. It ensures that the user is signed in/authenticated before going to this page. */}
+      //   <Layout>
+      //     <Dashboard />
+      //   </Layout>
+      // </ProtectedRoute>,
+  },
+  {
+    path: '/teamcreation',
+    element: 
+    <Layout>
+    <TeamCreation />
+    </Layout>
   },
   {
     path: '/signin',

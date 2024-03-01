@@ -20,18 +20,9 @@
   max-height: 100vh;
   overflow: hidden;
 
-  --primary-color-light: #f5f5f5;
-  --primary-color: #0d0d0d;   /* 60% of the usage */
-  --secondary-color: #1f1f1f; /* 30% of the usage */
-  --tertiary-color: #2f2f2f;  /* 10% of the usage */
-  --accent-color: #f57e5a;     /* 10% of the usage */
-
-  --accent-hover-color: #f68967;
-
-  --invalid-color: #cbcbcb;
-
-  --text-color : #f5f5f5;
-  --secondary-text-color: #9f9f9f;
+  --primary-color: #101010;   /* 60% of the usage */
+  --secondary-color: #ffffff; /* 30% of the usage */
+  --accent-color: #ff8c00;     /* 10% of the usage */
 
   --secondary-semi-transparent: rgba(31, 31, 31, 0.40);
   --secondary-transparent: rgba(31, 31, 31, 0.20);
@@ -402,25 +393,6 @@ input:disabled {
   background-color: var(--secondary-background);
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-
-  margin-top: 80px;
-}
-
-.modal-backdrop{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .modal-content{
