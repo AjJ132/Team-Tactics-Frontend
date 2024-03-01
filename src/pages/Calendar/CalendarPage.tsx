@@ -15,6 +15,7 @@ import {
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './CalendarPage.css';
+import CalendarHeader from "../../components/Calendar/CalendarHeader";
 
 interface CalendarPageProps {
     // Add any props you need for the CalendarPage component
@@ -44,17 +45,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     const firstDayOfMonth = useMemo(() => startOfMonth(currentMonth), [currentMonth]);
     const lastDayOfMonth = useMemo(() => endOfMonth(currentMonth), [currentMonth]);
 
-    // Declare a new state variable for modal visibility
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-
-    // Declare a new state variable for selected date
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-
     const startingDayIndex = getDay(firstDayOfMonth);
-
-    const [canUpdateEvent, setCanUpdateEvent] = useState(false);
 
     const daysInMonth = useMemo(() => eachDayOfInterval({
         start: firstDayOfMonth,
@@ -75,8 +66,6 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
             return newMonth;
         });
     };
-
-    
 
     function isColorLight(color: string) {
         var c = color.substring(1);      // strip #
@@ -107,20 +96,11 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
 
     const handleDayClick = (date: Date) => {
         //launch add event modal
-        setSelectedDate(date); // Save the clicked date
-        setIsAddModalOpen(true); // Open the modal
     };
     
     const handleEventClick = (event: Event, e: React.MouseEvent) => {
         // Prevent the click event from bubbling up to the parent elements
         e.stopPropagation();
-
-        //check if event 
-
-        //launch view event modal
-        setSelectedEvent(event); // Save the clicked event
-        setIsViewModalOpen(true); // Open the modal
-
     };
 
     const eventsByDate = useMemo(() => {
@@ -144,21 +124,6 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
             return acc;
         }, {});
     }, [events]);
-    
-    
-    const addNewEvent = (newEvent: Event) => {
-        console.log('Events2:', events)
-        if (Array.isArray(events)) {
-            setEvents([...events, newEvent]);
-            setIsAddModalOpen(false); // Close the modal
-        } else {
-            console.error('events2 is not an array');
-            // Optionally, reset events2 to an empty array here
-            setEvents([]);
-        }
-        
-    };
-    
     
     const updateEvent = (updatedEvent: Event) => {
         console.log('Updated event:', updatedEvent);
@@ -184,7 +149,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
             const updatedEvents = events.filter(event => event.Event_ID !== eventToDelete.Event_ID);
             setEvents(updatedEvents);
         } else {
-            console.error('events2 is not an array');
+            console.error('events is not an array');
             // Optionally, reset events2 to an empty array here
             setEvents([]);
         }
@@ -200,50 +165,19 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
         }
     };
     
-    
+    // Fetch events when the component mounts and the month changes
     useEffect(() => {
         fetchEvents(firstDayOfMonth);
-    
-        console.log('Add event:', addEvent);
-        
-        if(addEvent === true) {
-    
-            console.log('Add event is true');
-            setSelectedDate(currentDate);
-            setIsAddModalOpen(true);
-    
-        }
-    
     }, [currentMonth]);
 
     return (
-        <div className='w-full h-full flex flex-col pl-6 pr-6'>
-           <div className="flex flex-row justify-between content-center w-full mb-4 pl-4 pr-4 mt-4">
-                <button className="flex flex-row justify-center items-center p-2 w-fit h-fit gap-2">
-                    <FontAwesomeIcon icon={faPlus} /> <p>Add Event</p>
-                </button>
-                <h2 className="text-center calendar-text font-bold">{format(currentMonth, "MMMM yyyy")}</h2>
-                
-                <div className="date-change-button">
-                    <button className="no-border-radius" onClick={toToday}>
-                        <div>Today</div>
-                    </button>
-                    <button onClick={toPreviousMonth}>
-                        <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <button className="no-border-radius">
-                        <div>{currentMonth.toLocaleString('default', { month: 'short' })}</div>
-                    </button>
-                    <button onClick={toNextMonth}>
-                        <svg className="w-6 h-6 ml-auto mr-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                    
-                </div>
-            </div>
+        <div className='h-full w-4/5 flex flex-col'>
+           <CalendarHeader 
+                currentMonth={currentMonth}
+                toNextMonth={toNextMonth}
+                toPreviousMonth={toPreviousMonth}
+                toToday={toToday}
+            />
             <div className="card p-8 grid grid-cols-7 gap-0 calendar-text h-full" style={{ gridTemplateRows: '0.2fr 1fr 1fr 1fr 1fr 1fr 1fr'}}>
                     {WEEKDAYS.map((day) => (
                         <div key={day} className="border font-bold text-center uppercase calendar-header-text">

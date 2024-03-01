@@ -29,9 +29,9 @@ export default function CalendarProvider({ children }: PropsWithChildren<{}>) {
         setIsLoading(false);
     }, []);
 
-    const createNewEvent = async (newEvent: NewEvent) => {
+    const createNewEvent = async (newEvent: NewEvent): Promise<boolean> => {
         // Create the new event
-        const response = await fetch(`${apiUrl}/calendar/create-event`, {
+        const response = await fetch(`${apiUrl}/calendar/create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,16 +42,15 @@ export default function CalendarProvider({ children }: PropsWithChildren<{}>) {
 
         if (!response.ok) {
             // Throw an error with the status code for non-2xx responses
-            throw new Error(`HTTP error! status: ${response.status}`);
+            return false;
         }
 
         const data = await response.json();
         
-
         //data is the new event. add it to the list of events
         addEvent(data);
 
-        return;
+        return true;
     };
 
     const addEvent = (newEvent: CalendarEvent) => {

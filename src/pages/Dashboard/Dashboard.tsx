@@ -23,7 +23,7 @@ function Dashboard() {
   return (
    
     
-      <div className="flex flex-col w-full h-full gap-14">
+      <div className="flex flex-col w-4/5 h-full gap-14">
        <WelcomeSign today={today} firstName={auth.user?.firstName || ""} />
         <div className="flex flex-col gap-8">
           <div className="card w-full p-4">

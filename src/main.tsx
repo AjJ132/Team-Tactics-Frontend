@@ -23,6 +23,7 @@ import CalendarPage from './pages/Calendar/CalendarPage'
 import MessagesPage from './pages/Messages/MessagesPage'
 import FilesPage from './pages/files/FilesPage'
 import Signup from './pages/SigninSignup/Signup'
+import { ModalVisibilityProvider } from './providers/ModalVisibilityManager'
 
 
 // ------------OLD CODE. Keeping for awhile just in case :) AJ. (Removing this so the navbar doesnt re render on every page change)
@@ -68,9 +69,9 @@ if (rootElement) {
     <React.StrictMode>
       <AuthProvider>
         <CalendarProvider>
-          
+          <ModalVisibilityProvider>
             <BrowserRouter>
-              <Layout> {/* Layout is now outside and wraps around the routes */}
+              <Layout> 
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/signin" element={<SignIn />} />
@@ -82,7 +83,7 @@ if (rootElement) {
                 </Routes>
               </Layout>
             </BrowserRouter>
-          
+          </ModalVisibilityProvider>
         </CalendarProvider>
       </AuthProvider>
     </React.StrictMode>,

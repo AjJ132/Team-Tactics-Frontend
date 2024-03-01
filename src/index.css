@@ -388,6 +388,8 @@ input:disabled {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  padding-bottom: 24px;
 }
 
 .page-layout{
@@ -398,7 +400,7 @@ input:disabled {
 
 .page-content{
   background-color: var(--secondary-background);
-  width: 80%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

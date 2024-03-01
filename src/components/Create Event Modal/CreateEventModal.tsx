@@ -4,11 +4,10 @@ import ModalBody from '../Modal Body/ModalBody';
 import { useCalendar } from '../../providers/CalendarProvider';
 
 type CreateEventModalProps = {
-    isOpen: boolean;
     onClose: (event?: NewEvent) => void;
 };
 
-const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) => {
+const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose }) => {
 
     const calendar = useCalendar();
     
@@ -40,11 +39,6 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) 
     }, []);
     
 
-    //if the modal is not open, return null
-    if (!isOpen) {
-        return null;
-    }
-
     const handleCancel = () => {
         onClose();
     }
@@ -62,7 +56,12 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ isOpen, onClose }) 
         };
 
         //send the new event to the server
-        await calendar.createNewEvent(newEvent);
+        const success = await calendar.createNewEvent(newEvent);
+        if (success !== undefined && success !== null && success == true) {
+            onClose(newEvent);
+        } else {
+            alert("Failed to create event");
+        }
     }
 
     return (

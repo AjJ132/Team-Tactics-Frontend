@@ -59,6 +59,9 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
     //Method to swap in and out of offline mode
     const toggleOfflineMode = (value: boolean) => {
         console.log('offline mode', value);
+        //grab current value
+        const currentValue = offlineMode;
+        
         setOfflineMode(value);
         
         //set the user to the offline user <-- John Doe
@@ -67,6 +70,11 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
 
         //set local storage, toggle local storage to help with maintaining offline mode when the page refreshes/reloads
         localStorage.setItem('offlineMode', value.toString());
+
+        //if toggling from offline to online, redirect to signin
+        if(currentValue && !value){
+            window.location.href = '/signin';
+        }
     };
       
 

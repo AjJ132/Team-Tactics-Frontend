@@ -20,7 +20,6 @@ const ActionPill: React.FC<ActionPillProps> = (props) => {
         // Show the modal
         if (props.modalType === 'CreateEventModal'){
             setShowCreateEventModal(true);
-
         }
         else if (props.modalType === 'none'){
             if (props.returnData) {
@@ -29,18 +28,8 @@ const ActionPill: React.FC<ActionPillProps> = (props) => {
         }
     };
 
-    const returnData = (data: any) => {
-        // Hide the modal
-        setShowCreateEventModal(false);
-        if (props.returnData) {
-            props.returnData(data);
-        }
-    }
-    
-
     return (
         <div>
-            <CreateEventModal isOpen={showCreateEventModa} onClose={returnData}/>
             <div className='action-pill-container mt-4'>
             <button className='flex flex-row' onClick={handleClicked}>
                 <p className='ml-4'>{props.action}</p>

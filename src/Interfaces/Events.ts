@@ -17,5 +17,8 @@ export interface CalendarEvent {
     startDate: Date,
     endDate: Date,
     color: string,
+    canUpdate: boolean,
+    creatorId: string,
+    creatorName: string,
     AssignedUsers: User_DTO[]
 }

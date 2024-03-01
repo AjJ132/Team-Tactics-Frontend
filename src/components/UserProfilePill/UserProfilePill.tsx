@@ -9,6 +9,8 @@ type UserProfilePillProps = {
 };
 
 const UserProfilePill: React.FC<UserProfilePillProps> = (props) => {
+    
+
     return (
         <div className='profile-pill-container ml-auto'>
             <button className='flex flex-row'>
