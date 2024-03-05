@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Open Sans', sans-serif; /* For a web font */
+  font-family: "Open Sans", sans-serif; /* For a web font */
 
   /* light and dark mode backgrounds */
 
@@ -21,38 +21,37 @@
   overflow: hidden;
 
   --primary-color-light: #f5f5f5;
-  --primary-color: #0d0d0d;   /* 60% of the usage */
+  --primary-color: #0d0d0d; /* 60% of the usage */
   --secondary-color: #1f1f1f; /* 30% of the usage */
-  --tertiary-color: #2f2f2f;  /* 10% of the usage */
-  --accent-color: #f57e5a;     /* 10% of the usage */
+  --tertiary-color: #2f2f2f; /* 10% of the usage */
+  --accent-color: #f57e5a; /* 10% of the usage */
 
   --accent-hover-color: #f68967;
 
   --invalid-color: #cbcbcb;
 
-  --text-color : #f5f5f5;
+  --text-color: #f5f5f5;
   --secondary-text-color: #9f9f9f;
 
-  --secondary-semi-transparent: rgba(31, 31, 31, 0.40);
-  --secondary-transparent: rgba(31, 31, 31, 0.20);
+  --secondary-semi-transparent: rgba(31, 31, 31, 0.4);
+  --secondary-transparent: rgba(31, 31, 31, 0.2);
 
   --soft-border: rgba(203, 203, 203, 0.5);
 
-  color: var(--text-color)
-
+  color: var(--text-color);
 }
 
-p{
+p {
   color: var(--text-color);
 }
 
 svg {
-  color:  var(--text-color);
+  color: var(--text-color);
 }
 
-a{
+a {
   text-decoration: none;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 a:hover {
@@ -80,8 +79,7 @@ h4 {
   line-height: 1.1;
 }
 
-
-.circle-image img{
+.circle-image img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -94,7 +92,7 @@ h4 {
   color: var(--primary-color);
 }
 
-.circle-image-transparent img{
+.circle-image-transparent img {
   border-radius: 50%;
   background-color: transparent;
   display: flex;
@@ -122,8 +120,6 @@ button {
   outline: none;
 }
 
-
-
 /* Button class for button but submit type */
 button[type="submit"] {
   background-color: var(--accent-color);
@@ -139,14 +135,14 @@ button[type="submit"] {
 }
 
 .button:hover {
-  background-color: var(--accent-hover-color); /* Slightly darker blue on hover for feedback */
+  background-color: var(
+    --accent-hover-color
+  ); /* Slightly darker blue on hover for feedback */
 }
 
-
-button.danger{
+button.danger {
   background-color: red;
 }
-
 
 .locked-button {
   display: block;
@@ -162,7 +158,7 @@ button.danger{
 }
 
 .locked-button:hover {
-  background-color: var(--soft-gray); 
+  background-color: var(--soft-gray);
 }
 
 input {
@@ -178,7 +174,6 @@ input {
 
   transition: all 0.25s ease;
 }
-
 
 textarea {
   width: 100%;
@@ -213,7 +208,6 @@ input[type="color"] {
   padding-left: 10px;
 
   transition: all 0.25s ease;
-
 }
 
 input[type="checkbox"] {
@@ -236,7 +230,7 @@ input[type="checkbox"]:focus {
   border-color: var(--accent-color); /* Highlight color when focused */
 }
 
-input[type="date"]{
+input[type="date"] {
   width: 100%;
   height: 40px;
   background-color: var(--secondary-bg-offset);
@@ -248,7 +242,6 @@ input[type="date"]{
   padding-left: 10px;
 
   transition: all 0.25s ease;
-
 }
 
 input[type="date"]:hover {
@@ -259,7 +252,7 @@ input[type="date"]:focus {
   border-color: var(--accent-color);
 }
 
-input[type="time"]{
+input[type="time"] {
   width: 100%;
   height: 40px;
   background-color: var(--secondary-bg-offset);
@@ -281,7 +274,7 @@ input[type="time"]:focus {
   border-color: var(--accent-color);
 }
 
-input[type="datetime-local"]{
+input[type="datetime-local"] {
   width: 100%;
   height: 40px;
   background-color: var(--secondary-bg-offset);
@@ -293,7 +286,6 @@ input[type="datetime-local"]{
   padding-left: 10px;
 
   transition: all 0.25s ease;
-
 }
 
 .filter-dropdown {
@@ -318,7 +310,7 @@ input[type="datetime-local"]{
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -332,8 +324,8 @@ input[type="datetime-local"]{
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -344,8 +336,8 @@ input[type="datetime-local"]{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -375,8 +367,7 @@ input:disabled {
   border-radius: 50%;
 }
 
-
-.page-container{
+.page-container {
   width: 100vw;
   height: 100vh;
   max-height: 100vh;
@@ -389,13 +380,13 @@ input:disabled {
   padding-bottom: 24px;
 }
 
-.page-layout{
+.page-layout {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
 
-.page-content{
+.page-content {
   background-color: var(--secondary-background);
   width: 100%;
   height: 100%;
@@ -407,7 +398,7 @@ input:disabled {
   margin-top: 80px;
 }
 
-.modal-backdrop{
+.modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -420,7 +411,7 @@ input:disabled {
   align-items: center;
 }
 
-.modal-content{
+.modal-content {
   width: 420px;
   height: fit-content;
 
@@ -443,7 +434,7 @@ input:disabled {
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
 }
 
-.modal-header{
+.modal-header {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -460,11 +451,11 @@ input:disabled {
   color: var(--secondary-text-color);
 }
 
-.modal-body{
+.modal-body {
   padding: 24px 24px 24px 24px;
 }
 
-.modal-footer{
+.modal-footer {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -478,7 +469,7 @@ input:disabled {
   gap: 16px;
 }
 
-.modal-footer button{
+.modal-footer button {
   width: 100px;
   height: 40px;
   border: none;
@@ -498,77 +489,68 @@ input:disabled {
   background-color: var(--invalid-color);
 }
 
-
-@keyframes fadeInModal{
-  0%{
-      opacity: 0;
+@keyframes fadeInModal {
+  0% {
+    opacity: 0;
   }
-  100%{
-      opacity: 1;
+  100% {
+    opacity: 1;
   }
-
 }
 
-.modal-content strong{
-color: red;
+.modal-content strong {
+  color: red;
 }
 
 .modal-content h1 {
   font-size: 2.125rem;
   font-weight: 600;
-  
 }
 
 .modal-content h2 {
   font-size: 26px;
   font-weight: 600;
-  
 }
 
 .modal-content h3 {
   font-size: 20px;
   font-weight: 550;
-  
 }
 
 .modal-content p {
   font-size: 16px;
   font-weight: 500;
-  
 }
 
-.modal-content a{
+.modal-content a {
   font-size: 16px;
   font-weight: 500;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.subinfo-text p{
+.subinfo-text p {
   font-size: 14px;
   font-weight: 500;
   color: var(--soft-gray-text);
 }
 
-.card{
+.card {
   background-color: var(--secondary-color);
   border-radius: 50px;
 
   box-shadow: 0 0 15px 0 var(--secondary-semi-transparent);
-  
 }
 
-.card .link:hover{
+.card .link:hover {
   color: var(--accent-color);
 }
 
-
-
-.card:hover{
+.card:hover {
   background-color: var(--tertiary-color);
 }
 
-.icon-button button{
+.icon-button button {
   background-color: var(--secondary-color) !important;
   border-radius: 50%;
   cursor: pointer;
@@ -579,11 +561,11 @@ color: red;
   justify-content: center;
   align-items: center;
 
-  width: 4rem; 
-  height: 4rem; 
+  width: 4rem;
+  height: 4rem;
 }
 
-.icon-button button:hover{
+.icon-button button:hover {
   background-color: var(--accent-color) !important;
 }
 
@@ -598,10 +580,10 @@ color: red;
   align-items: center;
 
   width: 4rem;
-  height: 4rem; 
+  height: 4rem;
 }
 
-.icon-button-transparent button{
+.icon-button-transparent button {
   background-color: transparent !important;
   border-radius: 50%;
   cursor: pointer;
@@ -612,7 +594,6 @@ color: red;
   align-items: center;
 }
 
-.icon-button-transparent svg:hover{
+.icon-button-transparent svg:hover {
   color: var(--accent-color) !important;
 }
-

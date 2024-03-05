@@ -1,0 +1,13 @@
+Below are the C# classes for the DTO(Data Transfer Objects). Please send information accordingly. If you need to change the DTO please contact a backend person before changing. -AJ
+
+
+----------------------------------------------------------------
+public class RegisterModel
+{
+    // Properties
+    public string Password { get; set; }
+    public string Email { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+----------------------------------------------------------------
