@@ -24,10 +24,45 @@ export default function CalendarProvider({ children }: PropsWithChildren<{}>) {
     const [myEvents, setMyEvents] = useState<CalendarEvent[]>([]);
 
     useEffect(() => {
-        // Fetch data from the API
-        // Set the loading state to false when the data is fetched
-        setIsLoading(false);
+        const fetchEvents = async () => {
+            const events = await getMyEvents();
+            setMyEvents(events);
+            setIsLoading(false);
+        };
+        fetchEvents();
     }, []);
+
+    const getMyEvents =  async () : Promise<CalendarEvent[]> => {
+        try {
+            const response = await fetch(`${apiUrl}/calendar/myevents`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                // Throw an error with the status code for non-2xx responses
+                return [];
+            }
+
+            let data = await response.json() as CalendarEvent[];
+
+            data = data.map(event => ({
+                ...event,
+                startDate: new Date(event.startDate),
+                endDate: new Date(event.endDate),
+            }));
+
+            return data;
+        } catch (error) {
+            console.error('Failed to fetch events:', error);
+            return [];
+        }
+    }
+
+    
 
     const createNewEvent = async (newEvent: NewEvent): Promise<boolean> => {
         // Create the new event

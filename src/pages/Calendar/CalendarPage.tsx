@@ -16,6 +16,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './CalendarPage.css';
 import CalendarHeader from "../../components/Calendar/CalendarHeader";
+import { useCalendar } from "../../providers/CalendarProvider";
+import { CalendarEvent } from "../../Interfaces/Events";
+import { useModalVisibility } from "../../providers/ModalVisibilityManager";
+import ViewEventModal from "../../components/Calendar/ViewCalendarEventModal";
 
 interface CalendarPageProps {
     // Add any props you need for the CalendarPage component
@@ -36,10 +40,12 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const CalendarPage: React.FC<CalendarPageProps> = (props) => {
+    const calendarProvider = useCalendar();
     const location = useLocation();
     const addEvent = location.state?.addEvent || false;
+    const { showModal, hideModal } = useModalVisibility();
 
-    const [events, setEvents] = useState<Event[]>([]);
+    const [events, setEvents] = useState<CalendarEvent[]>([]);
     const currentDate = new Date();
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const firstDayOfMonth = useMemo(() => startOfMonth(currentMonth), [currentMonth]);
@@ -98,9 +104,19 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
         //launch add event modal
     };
     
-    const handleEventClick = (event: Event, e: React.MouseEvent) => {
-        // Prevent the click event from bubbling up to the parent elements
+    const handleEventClick = (event: CalendarEvent, e: React.MouseEvent) => {
+       // Prevent the click event from bubbling up to the parent elements
         e.stopPropagation();
+
+        showModal({
+            title: 'View Event',
+            subtitle: '',
+            actionText: 'Close',
+            modalContent: <ViewEventModal onClose={hideModal} selectedEvent={event}/>,
+            onActionSuccessful: (returnData) => {
+                console.log('Event created', returnData);
+            }
+        });
     };
 
     const eventsByDate = useMemo(() => {
@@ -109,7 +125,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
             return {};
         }
     
-        return events.reduce((acc: { [key: string]: Event[] }, event) => {
+        return events.reduce((acc: { [key: string]: CalendarEvent[] }, event: CalendarEvent) => {
             if (event && isValid(event.startDate)) {
                 const dateKey = format(event.startDate, "yyyy-MM-dd");
                 if (!acc[dateKey]) {
@@ -125,11 +141,11 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
         }, {});
     }, [events]);
     
-    const updateEvent = (updatedEvent: Event) => {
+    const updateEvent = (updatedEvent: CalendarEvent) => {
         console.log('Updated event:', updatedEvent);
         if (Array.isArray(events)) {
             const updatedEvents = events.map(event => {
-                if (event.Event_ID === updatedEvent.Event_ID) {
+                if (event.id === updatedEvent.id) {
                     return updatedEvent;
                 } else {
                     return event;
@@ -137,8 +153,8 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
             });
             setEvents(updatedEvents);
         } else {
-            console.error('events2 is not an array');
-            // Optionally, reset events2 to an empty array here
+            console.error('events is not an array');
+            // Optionally, reset events to an empty array here
             setEvents([]);
         }
     };
@@ -146,7 +162,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     const handleEventDelete = (eventToDelete: Event) => {
         console.log('Event ID to delete:', eventToDelete);
         if (Array.isArray(events)) {
-            const updatedEvents = events.filter(event => event.Event_ID !== eventToDelete.Event_ID);
+            const updatedEvents = events.filter(event => event.id !== eventToDelete.Event_ID);
             setEvents(updatedEvents);
         } else {
             console.error('events is not an array');
@@ -158,16 +174,32 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     
     const fetchEvents = async (date: Date) => {
         try {
-            
+            setEvents(calendarProvider.myEvents);
+
+            console.log('Events:', calendarProvider.myEvents);
         } catch (error) {
             console.error('Error fetching events:', error);
             setEvents([]); // Handle errors appropriately
         }
     };
+
+    // const handleOpenModal = () => {
+    //     showModal({
+    //         title: 'Create Event',
+    //         subtitle: 'Fill in the event details',
+    //         actionText: 'Save',
+    //         cancelText: 'Cancel',
+    //         modalContent: <ViewEventModal onClose={hideModal}/>,
+    //         onActionSuccessful: (returnData) => {
+    //             console.log('Event created', returnData);
+    //         }
+    //     });
+    // };
     
     // Fetch events when the component mounts and the month changes
     useEffect(() => {
         fetchEvents(firstDayOfMonth);
+
     }, [currentMonth]);
 
     return (
@@ -206,8 +238,8 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
                         {format(day, "d")}
                         {todaysEvents.map((event) => (
                         <div 
-                            key={event.Event_ID}
-                            onClick={(e) => handleEventClick(event, e)}
+                            key={event.id}
+                            onClick={(e) => handleEventClick(event as CalendarEvent, e)}
                             className="event-indicator-preview w-full cursor-pointer" 
                             style={{backgroundColor: event.color}}
                         >

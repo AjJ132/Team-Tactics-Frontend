@@ -7,6 +7,7 @@ interface ModalBodyProps {
     cancelText?: string;
     onCancel?: () => void;
     onActionSuccessful: (returnData: any) => void;
+    hideCancel?: boolean;
     modalContent: React.ReactNode;
 }
 
@@ -17,6 +18,7 @@ const ModalBody: React.FC<ModalBodyProps> = ({
     onActionSuccessful,
     modalContent,
     cancelText,
+    hideCancel,
     actionText,
 }) => {
 
@@ -35,7 +37,7 @@ const ModalBody: React.FC<ModalBodyProps> = ({
                         {modalContent}
                     </div>
                    <div className='modal-footer mt-8'>
-                        <button className='secondary' onClick={onCancel}>{cancelText}</button>
+                        {!hideCancel && <button onClick={onCancel}>{cancelText}</button>}
                         <button onClick={onActionSuccessful}>{actionText}</button>
                    </div>
                 </div>
