@@ -28,7 +28,6 @@ export const useMessages = (): MessagesContextType => {
 
 interface UserProviderProps {
     children: ReactNode;
-    apiUrl: string; // Add prop for apiUrl
   }
 
 
@@ -38,9 +37,6 @@ export const MessagesProvider = ({ children }: UserProviderProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const apiUrl = "http://localhost:7071";
 
-    if (isLoading) {
-        return <div>Loading Calendar Provider...</div>; // Consider typing this as ReactNode for flexibility
-    }
 
     const HandleCreateNewConversation = async (newConversation: NewConversation): Promise<Conversation> => {
         try {

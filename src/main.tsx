@@ -30,7 +30,9 @@ import FilesPage from "./pages/files/FilesPage";
 import TeamCreation from "./pages/TeamCreation/TeamCreation";
 import Signup from "./pages/SigninSignup/Signup";
 import { ModalVisibilityProvider } from "./providers/ModalVisibilityManager";
-import MessagesProvider from "./providers/MessagesProvider";
+import { MessagesProvider } from "./providers/MessagesProvider";
+import TeamSignup from "./pages/TeamSignup/TeamSignup";
+import TeamProvider from "./providers/TeamProvider";
 
 // Adjust your router configuration to include a single layout that wraps around your routes
 const rootElement = document.getElementById("root");
@@ -38,26 +40,29 @@ if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <AuthProvider>
-        <CalendarProvider>
-          <MessagesProvider>
-            <ModalVisibilityProvider>
-              <BrowserRouter>
-                <Layout>
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/signin" element={<SignIn />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/calendar" element={<CalendarPage />} />
-                    <Route path="/messages" element={<MessagesPage />} />
-                    <Route path="/files" element={<FilesPage />} />
-                    <Route path="/teams" element={<TeamCreation />} />
-                    {/* Define other routes here */}
-                  </Routes>
-                </Layout>
-              </BrowserRouter>
-            </ModalVisibilityProvider>
-          </MessagesProvider>
-        </CalendarProvider>
+        <TeamProvider>
+          <CalendarProvider>
+              <MessagesProvider>
+              <ModalVisibilityProvider>
+                <BrowserRouter>
+                  <Layout>
+                    <Routes>
+                      <Route path="/" element={<Dashboard />} />
+                      <Route path="/signin" element={<SignIn />} />
+                      <Route path="/signup" element={<Signup />} />
+                      <Route path="/calendar" element={<CalendarPage />} />
+                      <Route path="/messages" element={<MessagesPage />} />
+                      <Route path="/files" element={<FilesPage />} />
+                      <Route path="/teams" element={<TeamCreation />} />
+                      <Route path="/team-signup" element={<TeamSignup />} />
+                      {/* Define other routes here */}
+                    </Routes>
+                  </Layout>
+                </BrowserRouter>
+              </ModalVisibilityProvider>
+            </MessagesProvider>
+          </CalendarProvider>
+        </TeamProvider>
       </AuthProvider>
     </React.StrictMode>
   );

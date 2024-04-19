@@ -161,6 +161,25 @@ button.danger {
   background-color: var(--soft-gray);
 }
 
+select {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+option {
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+}
+
 input {
   width: 100%;
   height: 40px;

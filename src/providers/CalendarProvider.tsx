@@ -92,10 +92,6 @@ export default function CalendarProvider({ children }: PropsWithChildren<{}>) {
         setMyEvents([...myEvents, newEvent]);
     }
 
-    if (isLoading) {
-        return <div>Loading Calendar Provider...</div>; // Consider typing this as ReactNode for flexibility
-    }
-
     return (
         <CalendarContext.Provider value={{ isLoading: isLoading, myEvents, createNewEvent }}>
             {children}

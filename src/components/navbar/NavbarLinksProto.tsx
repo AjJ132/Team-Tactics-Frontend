@@ -33,6 +33,14 @@ const NavbarLinksProto: React.FC = () => {
       "/messages": "Messages",
       "/files": "Files",
     };
+
+    //check local storage for role, if 2 then coach else player
+    const role = localStorage.getItem("role");
+
+    if (role === "2") {
+      pathToButtonNameMap["/teams"] = "MyTeam";
+    }
+
     const activeButtonName = pathToButtonNameMap[location.pathname];
     if (activeButtonName) {
       setActiveButton(activeButtonName);
@@ -51,8 +59,9 @@ const NavbarLinksProto: React.FC = () => {
       Calendar: "/calendar",
       Messages: "/messages",
       Files: "/files",
-      Teams: "/teams",
+      MyTeam: "/teams", // Add MyTeam to the map
     };
+
     const path = buttonNameToPathMap[buttonName];
     if (path) {
       navigate(path);
@@ -63,16 +72,24 @@ const NavbarLinksProto: React.FC = () => {
     return activeButton === buttonName ? "navbar-links-active" : "";
   };
 
+  //check local storage for role, if 2 then coach else player
+  const role = localStorage.getItem("role");
+  const buttonNames = ["Dashboard", "Calendar", "Messages", "Files"];
+  if (role === "2") {
+    buttonNames.push("MyTeam");
+  }
+
   return (
     <div className="proto-navbar-links ml-auto mr-auto" ref={navRef}>
       <div className="slider-indicator" style={indicatorStyle}></div>
-      {["Dashboard", "Calendar", "Messages", "Files", "Teams"].map(
+      {buttonNames.map(
         (buttonName) => (
           <button
             key={buttonName}
             data-button-name={buttonName} // Added data attribute for selector
             onClick={() => handleButtonClick(buttonName)}
             className={`${isActive(buttonName)} navbar-link`}
+            style={{textWrap: 'nowrap'}}
           >
             <p>{buttonName}</p>
           </button>

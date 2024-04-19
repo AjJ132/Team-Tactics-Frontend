@@ -3,7 +3,7 @@ import Navbar from "../navbar/Navbar";
 import { useLocation } from "react-router-dom";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const nonNavbarRoutes = ["/signup", "/signin"];
+    const nonNavbarRoutes = ["/signup", "/signin", "/team-signup"];
     const [showNavbar, setShowNavbar] = useState(false);
     const location = useLocation(); // Use useLocation hook to get the current route
 

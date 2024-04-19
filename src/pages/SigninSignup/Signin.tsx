@@ -56,11 +56,11 @@ const UserSigninPage = () => {
                 </div>  
                 <div className="flex flex-col content-center justify-start gap-0 w-full pt-8">
                     <p>Email<strong>*</strong></p>
-                    <input type="text" placeholder="Email" className="modal-content-input" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="text" placeholder="Email" className="" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="flex flex-col content-center justify-start gap-0 w-full pt-6">
                     <p>Password<strong>*</strong></p>
-                    <input type="password" placeholder="Password" className="modal-content-input" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder="Password" className="" onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
                 <div className="flex flex-row content-center justify-start gap-2 w-full pt-2">

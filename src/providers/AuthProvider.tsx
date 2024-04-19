@@ -38,7 +38,8 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
         firstName: "John",
         lastName: "Doe",
         email: "johdoe123@gmail.com",
-        role: "Admin"
+        role: "Admin",
+        teamId: "teamId",
     });
 
     //on login success, set the user and isAuthenticated to true
@@ -117,8 +118,14 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
                 const result = await CheckAuthentication(); // Ensure this function is typed correctly
                 if (result && result.isAuthenticated) {
                     const user: User = result.user; // Casting to User type
+
                     setUser(user);
                     setIsAuthenticated(true);
+
+                    //team check
+                    if(user.teamId === null && window.location.pathname !== '/team-signup'){
+                        window.location.href = '/team-signup';
+                    }
                 } else {
                     setUser(null);
                     setIsAuthenticated(false);
@@ -134,7 +141,10 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
             setIsLoading(false);
         };
 
-        authenticateUser();
+        if (isAuthenticated === false) {
+            console.log('authenticating user');
+            authenticateUser();
+        }
     }, []);
 
     if (isLoading) {
