@@ -12,6 +12,7 @@ interface MessagesContextType {
     addConversationUser: (newConversationUser: ConversationUser) => Promise<boolean>;
     sendMessage: (newMessage: SendMessage) => Promise<boolean>;
     getConversations: () => Promise<Conversation[]>;
+    searchUsers: (searchTerm: string) => Promise<ConversationUser[]>;
 };
 
 const MessagesContext = createContext<MessagesContextType | undefined>(undefined);
@@ -29,9 +30,6 @@ export const useMessages = (): MessagesContextType => {
 interface UserProviderProps {
     children: ReactNode;
   }
-
-
-
 
 export const MessagesProvider = ({ children }: UserProviderProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -112,7 +110,7 @@ export const MessagesProvider = ({ children }: UserProviderProps) => {
     const HandleGetConversations = async (): Promise<Conversation[]> => {
         try {
             // Create the new event
-            const response = await fetch(`${apiUrl}/messages/get-conversations`, {
+            const response = await fetch(`${apiUrl}/messages/conversations`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -129,6 +127,30 @@ export const MessagesProvider = ({ children }: UserProviderProps) => {
         }
     }
 
+    const HandleSearchUsers = async (searchTerm: string): Promise<ConversationUser[]> => {
+        try {
+            // Create the new event
+            const response = await fetch(`${apiUrl}/messages/conversation-users?searchString=${searchTerm}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                return [];
+            }
+
+            const users: ConversationUser[] = await response.json();
+
+            return users;
+        } catch (error) {
+            console.error("Error searching users: ", error);
+            return [];
+        }
+    }
+
     return (
         <MessagesContext.Provider value={{ 
             isLoading: isLoading,
@@ -136,6 +158,7 @@ export const MessagesProvider = ({ children }: UserProviderProps) => {
             addConversationUser: HandleAddConversationUser,
             sendMessage: HandleSendMessage,
             getConversations: HandleGetConversations,
+            searchUsers: HandleSearchUsers,
 
             }}>
             {children}

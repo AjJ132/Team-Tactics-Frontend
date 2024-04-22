@@ -74,7 +74,7 @@ const NavbarLinksProto: React.FC = () => {
 
   //check local storage for role, if 2 then coach else player
   const role = localStorage.getItem("role");
-  const buttonNames = ["Dashboard", "Calendar", "Messages", "Files"];
+  const buttonNames = ["Dashboard", "Calendar", "Messages", ];
   if (role === "2") {
     buttonNames.push("MyTeam");
   }

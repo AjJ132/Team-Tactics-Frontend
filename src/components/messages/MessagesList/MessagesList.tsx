@@ -28,8 +28,8 @@ const MessagesList: React.FC<MessagesListProps> = ({ onConversationSelect }) => 
         <div>
             {conversations.map((conversation) => (
                 <div key={conversation.conversationId} className="conversation-row" onClick={() => handleConversationSelect(conversation)}>
-                    <h2>{conversation.conversationName.length > 20 ? conversation.conversationName.substring(0, 20) + '...' : conversation.conversationName}</h2>
-                    <p>{conversation.lastMessageSent.length > 50 ? conversation.lastMessageSent.substring(0, 50) + '...' : conversation.lastMessageSent}</p>
+                    <h3>{conversation.conversationName.length > 20 ? conversation.conversationName.substring(0, 20) + '...' : conversation.conversationName}</h3>
+                    {/* <p>{conversation.lastMessageSent.length > 50 ? conversation.lastMessageSent.substring(0, 50) + '...' : conversation.lastMessageSent}</p> */}
                 </div>
             ))}
         </div>

@@ -105,8 +105,6 @@ h4 {
 
 button {
   display: block;
-  width: 100px;
-  height: 30px;
   background-color: var(--accent-color);
   border: none;
   color: white;
@@ -615,4 +613,116 @@ input:disabled {
 
 .icon-button-transparent svg:hover {
   color: var(--accent-color) !important;
+}
+
+.horizontal-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--soft-border);
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 100%;
+  background-color: var(--soft-border);
+}
+
+
+.reset-button {
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.reset-button:hover {
+  background-color: var(--accent-hover-color);
+}
+
+.copy-button {
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.update-button {
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.table-auto {
+  border-collapse: collapse;
+}
+
+.table-auto th, .table-auto td {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-auto tr:nth-child(even) {
+}
+
+.table-auto th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+}
+
+.create-new-message-button{
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+}
+
+.conversation-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--soft-border);
+  border-top: 1px solid var(--soft-border);
+}
+
+.conversation-row:hover{
+  background-color: var(--tertiary-color);
+}
+
+.conversation-row-selected{
+  background-color: var(--tertiary-color);
 }

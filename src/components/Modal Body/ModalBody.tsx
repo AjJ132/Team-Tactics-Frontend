@@ -37,7 +37,7 @@ const ModalBody: React.FC<ModalBodyProps> = ({
                         {modalContent}
                     </div>
                    <div className='modal-footer mt-8'>
-                        {!hideCancel && <button onClick={onCancel}>{cancelText}</button>}
+                        {!hideCancel && <button className='secondary' onClick={onCancel}>{cancelText}</button>}
                         <button onClick={onActionSuccessful}>{actionText}</button>
                    </div>
                 </div>

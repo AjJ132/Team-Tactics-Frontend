@@ -27,7 +27,15 @@ export interface Team {
     teamState: string;
     teamJoinCode: string;
     dateCreated: string;
+
+    teamMembers?: TeamMemberDTO[];
 }   
+
+export interface TeamMemberDTO{
+    userId: string;
+    userName: string;
+    email: string;
+}
 
 export interface NewTeamDTO {
     teamName: string;

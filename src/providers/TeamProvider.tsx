@@ -7,6 +7,10 @@ type TeamProviderProps = PropsWithChildren & {
     handleSearchTeamViaCode: (teamCode: string) => Promise<Team>;
     handleCreateNewteam: (newTeam: NewTeamDTO) => Promise<Team>;
     handleJoinTeam: (teamId: string) => Promise<boolean>;
+    handleGetMyTeam: () => Promise<Team>;
+    handleGenerateTeamCode: () => Promise<string>;
+    handleUpdateTeam: (team: Team) => Promise<Team>;
+    handleRemoveUserFromTeam: (userId: string) => Promise<boolean>;
 
 };
 
@@ -16,6 +20,10 @@ const TeamContext = createContext<TeamProviderProps>({
     handleSearchTeamViaCode: async () => ({} as Team),
     handleCreateNewteam: async () => ({} as Team),
     handleJoinTeam: async () => false,
+    handleGetMyTeam: async () => ({} as Team),
+    handleGenerateTeamCode: async () => '',
+    handleUpdateTeam: async () => ({} as Team),
+    handleRemoveUserFromTeam: async () => false,
 });
 
 export default function TeamProvider({ children }: PropsWithChildren<{}>) {
@@ -100,9 +108,121 @@ export default function TeamProvider({ children }: PropsWithChildren<{}>) {
         }
     }
 
+    const HandleGetMyTeam = async (): Promise<Team> => {
+        try{
+            const response = await fetch(`${apiUrl}/teams/MyTeam`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok){
+                return {} as Team;
+            }
+
+            const data = await response.json();
+
+            //set my team
+            setMyTeam(data as Team);
+
+            //set team id in local storage
+            localStorage.setItem('teamId', data.teamId);
+
+            return data as Team;
+        }
+        catch (error){
+            console.error('Failed to get my team:', error);
+            return {} as Team;
+        }
+
+
+    };
+
+    const HandleGenerateTeamCode = async (): Promise<string> => {
+
+        try{
+
+            //get team id from myTeam 
+            const teamId = myTeam.teamId;
+            const response = await fetch(`${apiUrl}/teams/GenerateTeamCode?teamId=${teamId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok){
+                return '';
+            }
+
+            const data = await response.json();
+            return data.teamJoinCode as string;
+        }
+        catch (error){
+            console.error('Failed to generate team code:', error);
+            return '';
+        }
+    }
+
+    const HandleUpdateTeam = async (team: Team): Promise<Team> => {
+        try{
+            const response = await fetch(`${apiUrl}/teams/UpdateTeam`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(team),
+            });
+
+            if (!response.ok){
+                return {} as Team;
+            }
+
+            const data = await response.json();
+            return data as Team;
+        }
+        catch (error){
+            console.error('Failed to update team:', error);
+            return {} as Team;
+        }
+    }
+
+    const HandleRemoveUserFromTeam = async (userId: string): Promise<boolean> => {
+        try{
+            const response = await fetch(`${apiUrl}/teams/RemoveUserFromTeam?teamId=${myTeam.teamId}&userId=${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok){
+                return false;
+            }
+
+            return true;
+        }
+        catch (error){
+            console.error('Failed to remove user from team:', error);
+            return false;
+        }
+    }
+
 
     return (
-        <TeamContext.Provider value={{ myTeam, handleSearchTeamViaCode: HandleSearchTeamViaCode, handleCreateNewteam: HandleCreateNewteam, handleJoinTeam: HandleJoinTeam }}>
+        <TeamContext.Provider value={{ myTeam, handleSearchTeamViaCode: HandleSearchTeamViaCode,
+            handleCreateNewteam: HandleCreateNewteam, 
+            handleJoinTeam: HandleJoinTeam, 
+            handleGetMyTeam: HandleGetMyTeam ,
+            handleGenerateTeamCode: HandleGenerateTeamCode,
+            handleUpdateTeam: HandleUpdateTeam,
+            handleRemoveUserFromTeam: HandleRemoveUserFromTeam
+         }}>
             {children}
         </TeamContext.Provider>
     );

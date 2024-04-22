@@ -27,7 +27,7 @@ import CalendarProvider from "./providers/CalendarProvider";
 import CalendarPage from "./pages/Calendar/CalendarPage";
 import MessagesPage from "./pages/Messages/MessagesPage";
 import FilesPage from "./pages/files/FilesPage";
-import TeamCreation from "./pages/TeamCreation/TeamCreation";
+import TeamManagement from "./pages/TeamCreation/TeamManagement";
 import Signup from "./pages/SigninSignup/Signup";
 import { ModalVisibilityProvider } from "./providers/ModalVisibilityManager";
 import { MessagesProvider } from "./providers/MessagesProvider";
@@ -53,7 +53,7 @@ if (rootElement) {
                       <Route path="/calendar" element={<CalendarPage />} />
                       <Route path="/messages" element={<MessagesPage />} />
                       <Route path="/files" element={<FilesPage />} />
-                      <Route path="/teams" element={<TeamCreation />} />
+                      <Route path="/teams" element={<TeamManagement />} />
                       <Route path="/team-signup" element={<TeamSignup />} />
                       {/* Define other routes here */}
                     </Routes>
