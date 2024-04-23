@@ -119,6 +119,34 @@ export default function AuthProvider({ children }: PropsWithChildren<{}>) {
                 if (result && result.isAuthenticated) {
                     const user: User = result.user; // Casting to User type
 
+                    //set isLoggedIn to true
+                    localStorage.setItem('isLoggedIn', 'true');
+
+                    //switch case on role, Athlete = 1, Coach = 2, Admin = 3
+                    switch(user.role){
+                        case 'Athlete':
+                            //set local storage
+                            localStorage.setItem('role', '1');
+                            break;
+                        case 'Coach':
+                            //set local storage
+                            localStorage.setItem('role', '2');
+                            break;
+                        case 'Admin':
+                            //set local storage
+                            localStorage.setItem('role', '3');
+                            break;
+                        default:
+                            //set local storage
+                            localStorage.setItem('role', '1');
+                            break;
+                    }
+
+                    //if team id is present, set local storage
+                    if(user.teamId){
+                        localStorage.setItem('teamId', user.teamId);
+                    }
+                    
                     setUser(user);
                     setIsAuthenticated(true);
 
