@@ -45,6 +45,9 @@ const NavbarProfileSection: React.FC<Props> = (props) => {
             alert('Failed to logout');
         }
     };
+
+    const showSettings = () => {
+        window.location.href = '/settings';  }
         
     return (
         <div className={`navbar-profile-section ml-auto ${isDropdownOpen ? 'open' : ''}`}>
@@ -63,7 +66,7 @@ const NavbarProfileSection: React.FC<Props> = (props) => {
             {isDropdownOpen && (
                 <div className="dropdown-container" >
                     <div className="mt-4"></div>
-                    <div className="dropdown-item">
+                    <div className="dropdown-item" onClick={showSettings}>
                         <FontAwesomeIcon icon={faCog} />
                         <p>Settings</p>
                     </div>

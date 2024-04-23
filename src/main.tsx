@@ -33,6 +33,7 @@ import { ModalVisibilityProvider } from "./providers/ModalVisibilityManager";
 import { MessagesProvider } from "./providers/MessagesProvider";
 import TeamSignup from "./pages/TeamSignup/TeamSignup";
 import TeamProvider from "./providers/TeamProvider";
+import SettingsPage from "./pages/Settings/Settings";
 
 // Adjust your router configuration to include a single layout that wraps around your routes
 const rootElement = document.getElementById("root");
@@ -55,6 +56,7 @@ if (rootElement) {
                       <Route path="/files" element={<FilesPage />} />
                       <Route path="/teams" element={<TeamManagement />} />
                       <Route path="/team-signup" element={<TeamSignup />} />
+                      <Route path="/settings" element={<SettingsPage />} />
                       {/* Define other routes here */}
                     </Routes>
                   </Layout>

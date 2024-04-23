@@ -10,6 +10,7 @@ const MessagesList: React.FC<MessagesListProps> = ({ onConversationSelect }) => 
     const messagesProvider = useMessages();
 
     const [conversations, setConversations] = useState<Conversation[]>([]);
+    const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
 
     useEffect(() => {
         const fetchConversations = async () => {
@@ -21,13 +22,18 @@ const MessagesList: React.FC<MessagesListProps> = ({ onConversationSelect }) => 
     }, []);
 
     const handleConversationSelect = (conversation: Conversation) => {
+        setSelectedConversation(conversation);
         onConversationSelect(conversation);
     };
 
     return (
         <div>
             {conversations.map((conversation) => (
-                <div key={conversation.conversationId} className="conversation-row" onClick={() => handleConversationSelect(conversation)}>
+                <div 
+                    key={conversation.conversationId} 
+                    className={`conversation-row ${conversation === selectedConversation ? 'selected' : ''}`} 
+                    onClick={() => handleConversationSelect(conversation)}
+                >
                     <h3>{conversation.conversationName.length > 20 ? conversation.conversationName.substring(0, 20) + '...' : conversation.conversationName}</h3>
                     {/* <p>{conversation.lastMessageSent.length > 50 ? conversation.lastMessageSent.substring(0, 50) + '...' : conversation.lastMessageSent}</p> */}
                 </div>
