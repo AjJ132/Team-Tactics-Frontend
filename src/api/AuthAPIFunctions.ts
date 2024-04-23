@@ -5,8 +5,8 @@ import { useAuth } from '../providers/AuthProvider';
 
 //used to sign in the user. returns the user object if successful, else returns null.
 export const UserSignin = async (email: string, password: string): Promise<User | null> => {
-    //const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
-const apiUrl = "http://localhost:7071"
+    const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
+//const apiUrl = "http://localhost:7071"
     
     try {
         const response = await fetch(`${apiUrl}/auth/signin`, {
@@ -32,8 +32,8 @@ const apiUrl = "http://localhost:7071"
 };
 
 export const UserSignup = async (email: string, password: string, firstName: string, lastName: string, role: string): Promise<User | null> => {
-    //const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
-const apiUrl = "http://localhost:7071"
+    const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
+//const apiUrl = "http://localhost:7071"
     
     try {
         const response = await fetch(`${apiUrl}/auth/signup`, {
@@ -62,8 +62,8 @@ const apiUrl = "http://localhost:7071"
 export const CheckAuthentication = async (): Promise<{isAuthenticated: boolean, user: User} | null> => {
     try {
         // const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
-        //const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
-const apiUrl = "http://localhost:7071"
+        const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
+//const apiUrl = "http://localhost:7071"
         const response = await fetch(`${apiUrl}/auth/check-authentication`, {
             method: 'GET',
             headers: {
@@ -90,8 +90,8 @@ const apiUrl = "http://localhost:7071"
 export const UserSignout = async (): Promise<boolean> => {
     try {
         // const apiUrl = process.env.REACT_APP_BACKEND_API_URL;
-        //const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
-const apiUrl = "http://localhost:7071"
+        const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
+//const apiUrl = "http://localhost:7071"
         const response = await fetch(`${apiUrl}/auth/signout`, {
             method: 'POST',
             headers: {
