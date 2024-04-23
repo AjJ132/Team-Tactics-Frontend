@@ -1,0 +1,290 @@
+/* Navbar styles */
+
+.top-navbar {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px; /* Adjust the fixed sizes as needed */
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; /* Adjust gap between items if needed */
+  width: 100%;
+  height: fit-content;
+  background-color: var(--primary-background);
+  padding: 22px 30px; /* Combined padding-top with padding-left/right */
+  color: var(--secondary-color);
+}
+
+
+.side-nav {
+  
+  width: 18vw;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--primary-background);
+
+  display: flex;
+  flex-direction: column;
+
+  color: var(--secondary-color);
+
+  padding: 15px;
+  transition: width 0.2s ease-out; /* Corrected the spacing in the duration */
+}
+
+/* Adjusted styles when the navbar is closed */
+.side-nav-closed {
+  padding: 12px;
+  width: 5vw !important; /* Or a fixed width like 50px */
+}
+
+/* Hide text next to icons when navbar is closed */
+.side-nav-closed .side-nav-buttons button p {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s; /* Add delay to visibility */
+}
+
+/* Adjust button padding to be tighter when navbar is closed */
+.side-nav-closed .side-nav-buttons button {
+  padding: 12px;
+  align-items: center;
+  justify-content: center; /* Center the icon */
+}
+
+.side-nav .side-nav-buttons button p {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+/* Optionally adjust banner style when navbar is closed */
+.side-nav-closed .side-nav-banner {
+  justify-content: center; /* Center content in the banner */
+  padding: 4px; /* Adjust padding */
+}
+
+.side-nav-banner{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: var(--secondary-transparent);
+  border-radius: 6px;
+  border: 1px solid var(--secondary-transparent);
+  padding: 6px;
+  cursor: pointer;
+}
+
+.side-nav-buttons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 4px;
+}
+
+.side-nav-buttons button{
+  width: 100%;
+  height: 40px; /* Example fixed height */
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  
+}
+
+.side-nav-buttons a{
+  width: 100%;
+}
+
+.side-nav-buttons .selected{
+  background-color: var(--secondary-transparent);
+}
+
+.side-nav-buttons p{
+  margin-left: 15px;
+  /* Force in line */
+  display: inline;
+}
+
+.side-nav-buttons button:hover{
+  background-color: var(--secondary-transparent);
+}
+
+
+
+
+
+.proto-navbar-links{
+  width: fit-content;
+  height: 70px;
+  max-height: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+
+  position: relative;
+
+}
+
+.slider-indicator {
+  position: absolute;
+  height: 100%;
+  width: calc(25% - 20px); /* Assuming you have 4 buttons with equal width, and 10px gap on each side */
+  background-color: rgba(255, 255, 255, 0.01); /* Your indicator color */
+  z-index: 1000;
+  border: 1px solid var(--secondary-text-color); /* Your border color */
+  border-radius: 50px;
+  transition: left 0.15s ease-in-out; /* This creates the sliding effect */
+}
+
+
+.proto-navbar-links button{
+  position: relative; /* Add this line */
+  background-color: var(--secondary-color);
+  width: 100%;
+  height: 100%;
+  padding: 1.2rem 1.5rem;
+  border-radius: 50px;
+
+  flex-grow: 1;
+  overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+  position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+}
+
+.navbar-links-active::before {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50px;
+  display: block; /* Changed to block for positioning */
+  position: absolute; /* Add this line */
+  left: 10px; /* Adjust as needed */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+  margin-right: 5px;
+}
+
+.proto-navbar-links button p {
+  color: var(--secondary-text-color);
+}
+
+.proto-navbar-links button p strong {
+  color: var(--text-color);
+}
+
+.navbar-profile-section{
+  width: fit-content;
+  height: 70px;
+  max-height: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 5000;
+
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+
+  position: relative;
+}
+
+
+.navbar-profile-section button{
+  position: relative; /* Add this line */
+  background-color: var(--secondary-color);
+  width: fit-content;
+  padding-right: 10px;
+  height: 100%;
+  border-radius: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-grow: 1;
+  overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+  position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+}
+
+
+.navbar-profile-section p{
+  line-height: 1;
+}
+
+.navbar-profile-section img{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.profile-dropdown-chevron-btn :hover{
+  cursor: pointer;
+  scale: 1.05;
+  color: var(--accent-color);
+}
+
+.dropdown-container{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--secondary-color);
+  border-radius: 0 0 25px 25px;
+  z-index: 500;
+  width: 100%;
+
+  /* max-height: 0; */
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.navbar-profile-section.open .dropdown-container {
+  /* max-height: 200px; */
+}
+
+.dropdown-container .dropdown-item {
+  padding: 20px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.dropdown-container .dropdown-item:last-child {
+  padding-bottom: 20px; /* Increase the bottom padding */
+}
+
+
+.dropdown-container .dropdown-item:hover {
+  background: var(--accent-color);
+}
+
+.navbar-profile-section.open {
+  border-top-left-radius: 40px;
+  border-top-right-radius: 28px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+

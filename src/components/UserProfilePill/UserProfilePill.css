@@ -1,0 +1,52 @@
+.profile-pill-container{
+    min-width: 250px;
+    width: fit-content;
+    height: 70px;
+    max-height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+
+    position: relative;
+}
+
+.profile-pill-container button{
+    position: relative; /* Add this line */
+    background-color: var(--secondary-color);
+    width: fit-content;
+    padding-right: 10px;
+    height: 100%;
+    border-radius: 50px;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  
+    flex-grow: 1;
+    overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+    position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+  }
+  
+  
+  .profile-pill-container p{
+    line-height: 1;
+  }
+  
+  .profile-pill-container img{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 2px;
+  }
+  
+  .profile-dropdown-reply-btn :hover{
+    cursor: pointer;
+    scale: 1.05;
+    color: var(--accent-color);
+  }
+  

@@ -1,0 +1,9 @@
+.create-team-container {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: left; */
+}
+
+.create-team-container {
+  margin-bottom: 40px;
+}

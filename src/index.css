@@ -1,33 +1,61 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+:root {
+  font-family: "Open Sans", sans-serif; /* For a web font */
+
+  /* light and dark mode backgrounds */
+
+  color-scheme: any;
+  color: var(--text-color);
+  background-color: var(--primary-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+
+  --primary-color-light: #f5f5f5;
+  --primary-color: #0d0d0d; /* 60% of the usage */
+  --secondary-color: #1f1f1f; /* 30% of the usage */
+  --tertiary-color: #2f2f2f; /* 10% of the usage */
+  --accent-color: #f57e5a; /* 10% of the usage */
+
+  --accent-hover-color: #f68967;
+
+  --invalid-color: #cbcbcb;
+
+  --text-color: #f5f5f5;
+  --secondary-text-color: #9f9f9f;
+
+  --secondary-semi-transparent: rgba(31, 31, 31, 0.4);
+  --secondary-transparent: rgba(31, 31, 31, 0.2);
+
+  --soft-border: rgba(203, 203, 203, 0.5);
+
+  color: var(--text-color);
+}
+
+p {
+  color: var(--text-color);
+}
+
+svg {
+  color: var(--text-color);
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  text-decoration: none;
+  color: var(--text-color);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+a:hover {
+  color: var(--secondary-text-color);
 }
 
 h1 {
@@ -35,34 +63,666 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h2 {
+  font-size: 2.8em;
+  line-height: 1.1;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+h3 {
+  font-size: 2em;
+  line-height: 1.1;
+  color: var(--text-color);
+}
+
+h4 {
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.circle-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.circle-image-transparent img {
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+button {
+  display: block;
+  background-color: var(--accent-color);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Button class for button but submit type */
+button[type="submit"] {
+  background-color: var(--accent-color);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.button:hover {
+  background-color: var(
+    --accent-hover-color
+  ); /* Slightly darker blue on hover for feedback */
+}
+
+button.danger {
+  background-color: red;
+}
+
+.locked-button {
+  display: block;
+  background-color: var(--soft-gray);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.locked-button:hover {
+  background-color: var(--soft-gray);
+}
+
+select {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+option {
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-top: 10px;
+
+  transition: all 0.25s ease;
+}
+
+textarea.sm {
+  resize: none;
+  max-height: 100px;
+  min-height: 100px;
+}
+
+input[type="color"] {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+input[type="checkbox"] {
+  width: 22px; /* Adjust the width as needed */
+  height: 22px; /* Adjust the height as needed */
+  cursor: pointer;
+  appearance: auto;
+  background-color: white !important; /* White background */
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+}
+
+input[type="checkbox"]:checked {
+  background-color: white;
+  border: 2px solid var(--accent-color); /* Blue border for checked state */
+}
+
+input[type="checkbox"]:focus {
+  outline: none; /* Removes outline on focus */
+  border-color: var(--accent-color); /* Highlight color when focused */
+}
+
+input[type="date"] {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+input[type="date"]:hover {
+  border-color: transparent;
+}
+
+input[type="date"]:focus {
+  border-color: var(--accent-color);
+}
+
+input[type="time"] {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+input[type="time"]:hover {
+  border-color: var(--soft-border);
+}
+
+input[type="time"]:focus {
+  border-color: var(--accent-color);
+}
+
+input[type="datetime-local"] {
+  width: 100%;
+  height: 40px;
+  background-color: var(--secondary-bg-offset);
+  border: 1px solid var(--soft-border);
+  border-radius: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 10px;
+
+  transition: all 0.25s ease;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #333;
+  border-radius: 4px;
+
+  transition: all 0.25s ease;
+}
+
+.filter-dropdown:hover {
+  border-color: var(--accent-color);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:disabled {
+  background-color: var(--soft-gray);
+  color: #888888;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-bottom: 24px;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.page-content {
+  background-color: var(--secondary-background);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-top: 80px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 420px;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+
+  color: var(--text-color);
+
+  z-index: 1;
+
+  opacity: 0;
+
+  animation: fadeInModal 0.5s ease forwards;
+
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 24px;
+
+  border-bottom: 1px solid var(--soft-border);
+}
+
+.modal-header p {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+}
+
+.modal-body {
+  padding: 24px 24px 24px 24px;
+}
+
+.modal-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-top: 1px solid var(--soft-border);
+  padding-top: 16px;
+  padding: 24px;
+
+  gap: 16px;
+}
+
+.modal-footer button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  color: var(--text-color);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.modal-footer button.secondary {
+  color: var(--primary-color);
+  background-color: var(--invalid-color);
+}
+
+@keyframes fadeInModal {
+  0% {
+    opacity: 0;
   }
-  a:hover {
-    color: #747bff;
+  100% {
+    opacity: 1;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.modal-content strong {
+  color: red;
+}
+
+.modal-content h1 {
+  font-size: 2.125rem;
+  font-weight: 600;
+}
+
+.modal-content h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  font-weight: 550;
+}
+
+.modal-content p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-content a {
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.subinfo-text p {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--soft-gray-text);
+}
+
+.card {
+  background-color: var(--secondary-color);
+  border-radius: 50px;
+
+  box-shadow: 0 0 15px 0 var(--secondary-semi-transparent);
+}
+
+.card .link:hover {
+  color: var(--accent-color);
+}
+
+.card:hover {
+  background-color: var(--tertiary-color);
+}
+
+.icon-button button {
+  background-color: var(--secondary-color) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 4rem;
+  height: 4rem;
+}
+
+.icon-button button:hover {
+  background-color: var(--accent-color) !important;
+}
+
+.icon-button-secondary button {
+  background-color: var(--secondary-semi-transparent) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 4rem;
+  height: 4rem;
+}
+
+.icon-button-transparent button {
+  background-color: transparent !important;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-button-transparent svg:hover {
+  color: var(--accent-color) !important;
+}
+
+.horizontal-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--soft-border);
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 100%;
+  background-color: var(--soft-border);
+}
+
+
+.reset-button {
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.reset-button:hover {
+  background-color: var(--accent-hover-color);
+}
+
+.copy-button {
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.update-button {
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 14px;
+}
+
+.table-auto {
+  border-collapse: collapse;
+}
+
+.table-auto th, .table-auto td {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-auto tr:nth-child(even) {
+}
+
+.table-auto th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: white;
+}
+
+.create-new-message-button{
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+}
+
+.conversation-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--soft-border);
+  border-top: 1px solid var(--soft-border);
+}
+
+.conversation-row:hover{
+  background-color: var(--tertiary-color);
+}
+
+.conversation-row-selected{
+  background-color: var(--tertiary-color);
 }

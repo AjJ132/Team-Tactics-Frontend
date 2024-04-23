@@ -1,0 +1,55 @@
+.calendar-event-pill-container{
+    min-width: 150px;
+    width: fit-content;
+    height: 70px;
+    max-height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+
+    position: relative;
+}
+
+.calendar-event-pill-container button{
+    position: relative; /* Add this line */
+    background-color: var(--secondary-color);
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    border-radius: 50px;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 20px;
+  
+    flex-grow: 1;
+    overflow: hidden; /* This will make sure that the border doesn't overflow the rounded corners */
+    position: relative; /* Ensure this is relative so that the ::after is positioned correctly */
+  }
+  
+  
+  .calendar-event-pill-container p{
+    line-height: 1;
+  }
+  
+  .calendar-event-pill-container img{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 2px;
+  }
+  
+  .calendar-event-dropdown-reply-btn :hover{
+    cursor: pointer;
+    scale: 1.05;
+    color: var(--accent-color);
+  }
+  
