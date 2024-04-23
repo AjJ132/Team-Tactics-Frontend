@@ -44,7 +44,7 @@ function Dashboard() {
               title="Messages"
               newMessagesCount={3}
               name="John Doe"
-              role="Admin"
+              role="Athlete"
             />
           </div>
           <FeedInfoCard title="Feed" />

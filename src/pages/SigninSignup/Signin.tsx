@@ -22,8 +22,46 @@ const UserSigninPage = () => {
               // If the response is not null, then the user is signed in
               //set the user object in the context and set isAuthenticated to true
               auth.loginSuccess(response);
+              console.log('response', response);
 
-              navigate('/');
+              //if present set the team id in local storage
+                if(response.teamId){
+                    localStorage.setItem('teamId', response.teamId);
+                }
+
+                //if present set role in local storage
+                if(response.role){
+                    switch(response.role){
+                        case 'Athlete':
+                            //set local storage
+                            localStorage.setItem('role', '1');
+                            break;
+                        case 'Coach':
+                            //set local storage
+                            localStorage.setItem('role', '2');
+                            break;
+                        case 'Admin':
+                            //set local storage
+                            localStorage.setItem('role', '3');
+                            break;
+                        default:
+                            //set local storage
+                            localStorage.setItem('role', '1');
+                            break;
+                    }
+                }
+
+                //if no team id redirect to team signup
+                if(response.teamId === null){
+                    console.log('no team id');
+                    navigate('/team-signup');
+                } else {
+                    console.log('team id present');
+                    navigate('/');
+                }
+
+
+             
           } else {
               // Handle sign-in failure without throwing an error, as error is logged in UserSignin
               console.error("Failed: Error signing in");

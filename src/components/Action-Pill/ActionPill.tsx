@@ -10,21 +10,15 @@ type ActionPillProps = {
     icon: React.ReactNode;
     modalType: string;
     returnData?: (data?: any) => void; // Modify the type of returnData to be a void callback
+    goTo?: string;
 };
 
 const ActionPill: React.FC<ActionPillProps> = (props) => {
-    const [showCreateEventModa, setShowCreateEventModal] = useState(false);
     
 
     const handleClicked = () => {
-        // Show the modal
-        if (props.modalType === 'CreateEventModal'){
-            setShowCreateEventModal(true);
-        }
-        else if (props.modalType === 'none'){
-            if (props.returnData) {
-                props.returnData();
-            }
+        if(props.goTo){
+            window.location.href = props.goTo;
         }
     };
 

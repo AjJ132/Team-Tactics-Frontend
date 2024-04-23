@@ -7,15 +7,35 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 type ViewEventModalProps = {
     onClose: (event?: NewEvent) => void;
-    selectedEvent?: CalendarEvent;
+    selectedEvent: CalendarEvent;
 };
 
 const ViewEventModal: React.FC<ViewEventModalProps> = ({ onClose, selectedEvent }) => {
-    const calendar = useCalendar();
-    
+
 
     const handleCancel = () => {
         onClose();
+    }
+
+    const handleDelete = async () => {
+        //delete event
+        const apiUrl = "http://localhost:7071"
+
+        const response = await fetch(`${apiUrl}/calendar/delete-event?eventID=${selectedEvent.eventId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            // Throw an error with the status code for non-2xx responses
+            alert('Failed to delete event');
+        }
+
+        //refresh page
+        window.location.reload();
     }
 
     return (
@@ -62,13 +82,26 @@ const ViewEventModal: React.FC<ViewEventModalProps> = ({ onClose, selectedEvent 
                 <p>Color</p>
                 <input type="color" value={selectedEvent?.color} disabled={true} />
             </div>
-            <p>User selection disabled for now</p>
-            <div className="flex flex-row gap-2 content-center justify-start w-full pt-8">
-                <div className="flex flex-col content-center justify-start gap-0 w-full ">
-                    <p>Athletes<strong>*</strong></p>
-                    <input type="text" placeholder="Search" disabled={true}/> {/*disabling for now */}
+            <div className="w-full flex flex-col items-start justify-center mt-8 gap-2">
+                <h3>Attendees</h3>
+
+               <div className='flex flex-col gap-4 w-full'>
+                     {selectedEvent.assignedUsers.map((user, index) => (
+                          <div key={index} className='flex flex-row items-center gap-2'>
+                            <li>{user}</li>
+                          </div>
+                     ))}
                 </div>
+
             </div>
+
+            {selectedEvent.canUpdate &&
+            <div className="flex flex-col gap-2 items-center justify-center w-full pt-4">
+                <button className='danger' style={{maxWidth: "150px", width: "150px", padding: "12px" }} onClick={handleDelete}>Delete</button>
+            </div>
+
+            }
+
         </div>
         
         }/>

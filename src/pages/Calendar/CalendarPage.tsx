@@ -145,7 +145,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
         console.log('Updated event:', updatedEvent);
         if (Array.isArray(events)) {
             const updatedEvents = events.map(event => {
-                if (event.id === updatedEvent.id) {
+                if (event.eventId === updatedEvent.eventId) {
                     return updatedEvent;
                 } else {
                     return event;
@@ -162,7 +162,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     const handleEventDelete = (eventToDelete: Event) => {
         console.log('Event ID to delete:', eventToDelete);
         if (Array.isArray(events)) {
-            const updatedEvents = events.filter(event => event.id !== eventToDelete.Event_ID);
+            const updatedEvents = events.filter(event => event.eventId !== eventToDelete.Event_ID);
             setEvents(updatedEvents);
         } else {
             console.error('events is not an array');
@@ -174,7 +174,9 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
     
     const fetchEvents = async (date: Date) => {
         try {
-            setEvents(calendarProvider.myEvents);
+            //fetch events
+            const events = await calendarProvider.getMyEvents();
+            setEvents(events);
 
             console.log('Events:', calendarProvider.myEvents);
         } catch (error) {
@@ -238,7 +240,7 @@ const CalendarPage: React.FC<CalendarPageProps> = (props) => {
                         {format(day, "d")}
                         {todaysEvents.map((event) => (
                         <div 
-                            key={event.id}
+                            key={event.eventId}
                             onClick={(e) => handleEventClick(event as CalendarEvent, e)}
                             className="event-indicator-preview w-full cursor-pointer" 
                             style={{backgroundColor: event.color}}

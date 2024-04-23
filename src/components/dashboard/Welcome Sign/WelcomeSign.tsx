@@ -25,8 +25,8 @@ const WelcomeSign: React.FC<WelcomeSignProps> = ({ today, firstName }) => {
             Good {today.getHours() < 12 ? "Morning" : today.getHours() < 18 ? "Afternoon" : "Evening"}, {firstName}!
         </h1>
         <div className="flex flex-row gap-4">
-            <ActionPill action="New Message" icon={<FontAwesomeIcon icon={faEnvelope} />} modalType='none' returnData={undefined}/>
-            <ActionPill action="New Event" icon={<FontAwesomeIcon icon={faCalendarDays} />} modalType='CreateEventModal' returnData={handleNewCreateEvent}/>
+            <ActionPill action="New Message" icon={<FontAwesomeIcon icon={faEnvelope} />} modalType='none' returnData={undefined} goTo='/messages'/>
+            <ActionPill action="New Event" icon={<FontAwesomeIcon icon={faCalendarDays} />} modalType='CreateEventModal' returnData={handleNewCreateEvent} goTo='/calendar'/>
         </div>
       </div>
       <RotatingGear />

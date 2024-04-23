@@ -12,7 +12,7 @@ export interface NewEvent {
 
 
 export interface CalendarEvent {
-    id: string,
+    eventId: string,
     title: string,
     description: string,
     startDate: Date,
@@ -21,5 +21,7 @@ export interface CalendarEvent {
     canUpdate: boolean,
     creatorId: string,
     creatorName: string,
-    AssignedUsers: User_DTO[]
+    //assigned user is string, string dictionary
+    assignedUsers: string[]
 }
+

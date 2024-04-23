@@ -45,6 +45,37 @@ const TeamSignup: React.FC<TeamSignupProps> = ({user}) => {
 
     }, []);
 
+    const handleSignout = async () => {
+        const apiUrl = "http://localhost:7071";
+
+        try {
+            const response = await fetch(`${apiUrl}/auth/signout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                // Throw an error with the status code for non-2xx responses
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            //remove local storage
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('role');
+            localStorage.removeItem('teamId');
+
+            //redirect to login
+            navigate('/signin');
+
+        } catch (error) {
+            console.error("Error in User Signout: ", (error as Error).message);
+            return null; // Return null in case of error
+        }
+    }
+
     
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,6 +186,10 @@ const TeamSignup: React.FC<TeamSignupProps> = ({user}) => {
 
                     </div>
 
+                    <div className='w-full flex flex-col items-center justify-center mt-8 gap-2'>
+                        <a href="#" onClick={handleSignout}>Sign Out</a>
+                    </div>
+
 
                 </div>
             ) : (
@@ -188,6 +223,10 @@ const TeamSignup: React.FC<TeamSignupProps> = ({user}) => {
                     ) : (
                         <></>
                     )}
+
+                    <div className='w-full flex flex-col items-center justify-center mt-8 gap-2'>
+                        <a href="#" onClick={handleSignout}>Sign Out</a>
+                    </div>
                 </div>
             )}
         </div>
