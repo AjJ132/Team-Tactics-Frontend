@@ -33,7 +33,7 @@ interface UserProviderProps {
 
 export const MessagesProvider = ({ children }: UserProviderProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const apiUrl = "http://localhost:7071";
+    const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
 
 
     const HandleCreateNewConversation = async (newConversation: NewConversation): Promise<Conversation> => {

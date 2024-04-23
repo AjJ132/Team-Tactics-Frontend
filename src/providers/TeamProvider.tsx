@@ -27,7 +27,7 @@ const TeamContext = createContext<TeamProviderProps>({
 });
 
 export default function TeamProvider({ children }: PropsWithChildren<{}>) {
-    const apiUrl = "http://localhost:7071";
+    const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
     const [myTeam, setMyTeam] = useState<Team>({} as Team);
 
 

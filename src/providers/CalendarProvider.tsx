@@ -19,7 +19,7 @@ const CalendarContext = createContext<CalendarProviderProps>({
 
 export default function CalendarProvider({ children }: PropsWithChildren<{}>) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const apiUrl = "http://localhost:7071";
+    const apiUrl = "https://team-tactics-backend-linux.azurewebsites.net";
 
     const [myEvents, setMyEvents] = useState<CalendarEvent[]>([]);
 
